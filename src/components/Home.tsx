@@ -52,7 +52,6 @@ const Home: React.FC<{}> = () => {
             );
         }
     };
-    const searchKeyword = () => {};
     return (
         <React.Fragment>
             <div className="introBanner">

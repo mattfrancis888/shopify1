@@ -55,18 +55,17 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
         if (event.key === "Enter") {
             event.preventDefault();
 
-            if (searchTerm === "") {
-                history.push("/search");
-            } else {
-                if (props.fetchGamesByKeyword)
-                    props.fetchGamesByKeyword(searchTerm);
-                history.push(`/search?q=${searchTerm}`);
-            }
+            // if (searchTerm === "") {
+            //     history.push("/search");
+            // } else {
+            //     if (props.fetchGamesByKeyword)
+            //         props.fetchGamesByKeyword(searchTerm);
+            //     history.push(`/search?q=${searchTerm}`);
+            // }
         }
     };
     const renderSearchPreview = () => {
         if (data) {
-            console.log(data);
             if (data === MANY_ERROR)
                 return <h1>Too Many Results, Narrow Your Search</h1>;
             else if (data instanceof Array) {
@@ -74,6 +73,9 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                     return (
                         <div key={index} className="nomineeMedia">
                             <img src={media.Poster} alt="poster" />
+                            <div className="nomineeMediaSelected">
+                                <h1>Nominated</h1>
+                            </div>
                             <div className="nomineeMediaTextWrap">
                                 <h1>{media.Title}</h1>
                                 <p>{media.Type}</p>

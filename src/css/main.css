@@ -341,7 +341,7 @@ template,
  */
 body {
   margin: 0;
-  background: #212121;
+  background: #02021e;
   color: white;
 }
 
@@ -389,7 +389,7 @@ body {
   src: url(../fonts/Square.woff2) format("woff2");
 }
 .searchAndNomineeSection {
-  padding: 0rem 3 rem;
+  padding: 0rem 3rem;
 }
 @media screen and (min-width: 768px) {
   .searchAndNomineeSection {
@@ -410,6 +410,7 @@ body {
 }
 
 .nomineeMediaContainer {
+  margin-top: 5rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
@@ -417,18 +418,71 @@ body {
 @media screen and (min-width: 520px) {
   .nomineeMediaContainer {
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2rem;
+    grid-gap: 1.5rem;
   }
 }
 @media screen and (min-width: 1200px) {
   .nomineeMediaContainer {
     grid-template-columns: repeat(5, 1fr);
-    grid-gap: 3rem;
+    grid-gap: 1.5rem;
   }
 }
-.nomineeMediaContainer img {
+
+.nomineeMediaSelected {
+  position: absolute;
+  overflow: hidden;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%) rotate(90deg);
+}
+.nomineeMediaSelected h1 {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  margin: 1.5rem 3rem;
+}
+@media screen and (min-width: 992px) {
+  .nomineeMediaSelected h1 {
+    font-size: 1.4rem;
+    margin: 2.5rem 4rem;
+  }
+}
+.nomineeMediaSelected h1:after {
+  content: "";
+  left: -2rem;
+  top: 0.8rem;
   width: 100%;
+  height: 100%;
+  transform: skew(-35deg);
+  position: absolute;
+  z-index: -1;
+  background: #ff3c2c;
+}
+@media screen and (min-width: 992px) {
+  .nomineeMediaSelected h1:after {
+    top: 1.2rem;
+  }
+}
+
+.nomineeMedia {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+.nomineeMedia img {
+  border: 1rem solid red;
+  width: 100%;
+  height: 22rem;
   object-fit: cover;
+}
+@media screen and (min-width: 520px) {
+  .nomineeMedia img {
+    height: 35rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .nomineeMedia img {
+    height: 45rem;
+  }
 }
 
 .nomineeMediaTextWrap {
@@ -559,13 +613,13 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background-color: #02021e;
+  opacity: 0.4;
   background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.8) 100%);
 }
 
 .searchBarForm {
-  background: #858585;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  background: #3718cb;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -582,7 +636,7 @@ body {
 }
 
 .searchBarIcons {
-  color: #858585;
+  color: white;
   font-size: 1.3rem;
   cursor: pointer;
   margin-right: 0.3rem;
