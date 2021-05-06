@@ -3,7 +3,9 @@ import history from "../browserHistory";
 import { AiOutlineSearch } from "react-icons/ai";
 import axios from "axios";
 import { Media } from "./Home";
+import NoImageFound from "../img/NoImageFound.jpg";
 const MANY_ERROR = "Too many results.";
+const MOVIE_NOT_FOUND = "Movie not found!";
 interface SearchbarProps {
     addItem(item: Media): void;
     cart: any;
@@ -30,6 +32,8 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                         dataSet(response.data.Search.slice(0, 5));
                     else if (response.data.Error === MANY_ERROR)
                         dataSet(MANY_ERROR);
+                    else if (response.data.Error === MOVIE_NOT_FOUND)
+                        dataSet(MOVIE_NOT_FOUND);
                 })
                 .catch(function (error) {
                     // handle error
@@ -63,13 +67,23 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
     const renderSearchPreview = () => {
         if (data) {
             if (data === MANY_ERROR)
-                return <h1>Too Many Results, Narrow Your Search</h1>;
+                return (
+                    <h1 className="noResultText">
+                        Too Many Results, Narrow Your Search
+                    </h1>
+                );
+            else if (data === MOVIE_NOT_FOUND)
+                return <h1 className="noResultText">{MOVIE_NOT_FOUND}</h1>;
             else if (data instanceof Array) {
                 return data.map((media: Media, index: number) => {
                     return (
                         <div key={index} className="nomineeMedia">
                             <img
-                                src={media.Poster}
+                                src={
+                                    media.Poster !== "N/A"
+                                        ? media.Poster
+                                        : NoImageFound
+                                }
                                 className={
                                     cart.find(
                                         (o: Media) => o.Title === media.Title

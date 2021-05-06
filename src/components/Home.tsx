@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Searchbar from "./Searchbar";
-import { title } from "process";
+import NoImageFound from "../img/NoImageFound.jpg";
 export interface Media {
     Title: string;
     Year: string;
@@ -10,7 +10,6 @@ export interface Media {
     Poster: string;
 }
 const Home: React.FC<{}> = () => {
-    const [medias, setMedias] = useState<any>(null);
     let [cart, setCart] = useState<[]>([]);
     let localCart = localStorage.getItem("cart");
     useEffect(() => {
@@ -65,27 +64,44 @@ const Home: React.FC<{}> = () => {
 
     const renderMedias = () => {
         if (cart) {
-            return (
-                <React.Fragment>
-                    {cart.map((media: Media, index: number) => {
-                        return (
-                            <div key={index} className="nomineeMedia">
-                                <img src={media.Poster} alt="poster" />
-                                <div className="nomineeMediaTextWrap">
-                                    <h1>{media.Title}</h1>
-                                    <p>{media.Year}</p>
+            if (cart.length > 0)
+                return (
+                    <React.Fragment>
+                        {cart.map((media: Media, index: number) => {
+                            return (
+                                <div key={index} className="nomineeMedia">
+                                    <img
+                                        src={
+                                            media.Poster !== "N/A"
+                                                ? media.Poster
+                                                : NoImageFound
+                                        }
+                                        onError={(e: any) => {
+                                            e.target.src = NoImageFound; // some replacement image
+                                            // e.target.style = 'padding: 8px; margin: 16px' // inline styles in html format
+                                        }}
+                                        alt="poster"
+                                    />
+                                    <div className="nomineeMediaTextWrap">
+                                        <h1>{media.Title}</h1>
+                                        <p>{media.Year}</p>
+                                    </div>
+                                    <button
+                                        className="removeButton"
+                                        onClick={() => removeItem(media.Title)}
+                                    >
+                                        Remove
+                                    </button>
                                 </div>
-                                <button
-                                    className="removeButton"
-                                    onClick={() => removeItem(media.Title)}
-                                >
-                                    Remove
-                                </button>
-                            </div>
-                        );
-                    })}
-                </React.Fragment>
-            );
+                            );
+                        })}
+                    </React.Fragment>
+                );
+            else {
+                return (
+                    <h1 className="noResultText">You Have No Nominations</h1>
+                );
+            }
         }
     };
 
