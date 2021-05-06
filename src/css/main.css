@@ -389,20 +389,36 @@ body {
   src: url(../fonts/Square.woff2) format("woff2");
 }
 .searchAndNomineeSection {
-  padding: 0rem 5rem;
+  padding: 0rem 3rem;
+}
+@media screen and (min-width: 768px) {
+  .searchAndNomineeSection {
+    padding: 0rem 5rem;
+  }
 }
 
 .searchAndNomineeTitle {
-  font-size: 5rem;
+  font-size: 3rem;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
   font-weight: bold;
 }
+@media screen and (min-width: 520px) {
+  .searchAndNomineeTitle {
+    font-size: 5rem;
+  }
+}
 
 .nomineeMediaContainer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 3rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+}
+@media screen and (min-width: 520px) {
+  .nomineeMediaContainer {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+  }
 }
 @media screen and (min-width: 1200px) {
   .nomineeMediaContainer {

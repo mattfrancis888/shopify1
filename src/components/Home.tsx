@@ -4,7 +4,7 @@ import Searchbar from "./Searchbar";
 const Home: React.FC<{}> = () => {
     const [medias, setMedias] = useState<any>(null);
     useEffect(() => {
-        const LINK = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=asdfhsadifosahd`;
+        const LINK = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=avengers`;
         axios
             .get(LINK)
             .then((response) => {
