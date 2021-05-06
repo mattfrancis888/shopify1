@@ -564,7 +564,7 @@ body {
 }
 
 .searchBarForm {
-  background: #316282;
+  background: #858585;
   border: 1px solid rgba(0, 0, 0, 0.3);
   display: flex;
   flex-flow: row nowrap;

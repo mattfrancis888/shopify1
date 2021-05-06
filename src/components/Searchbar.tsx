@@ -4,7 +4,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import axios from "axios";
 
 import useComponentVisible from "../useComponentVisible";
-
+const MANY_ERROR = "Too many results.";
 interface SearchbarProps {
     fetchGamesByKeyword?(searchKeyword: string): void;
 }
@@ -20,23 +20,31 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
     const searchBarInputRef = useRef<HTMLInputElement>(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [data, dataSet] = useState<any>(null);
+
     useEffect(() => {
+        console.log(searchTerm);
         async function fetchMyAPI() {
-            let response = await axios.get(`/api/search?q=${searchTerm}`);
-            // console.log("matt", response.data);
-            dataSet(response.data);
+            const LINK = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${searchTerm}`;
+            axios
+                .get(LINK)
+                .then((response) => {
+                    // handle success
+
+                    if (response.data.Search)
+                        dataSet(response.data.Search.slice(0, 5));
+                    else if (response.data.Error === MANY_ERROR)
+                        dataSet(MANY_ERROR);
+                })
+                .catch(function (error) {
+                    // handle error
+
+                    console.log("API ERROR:", error);
+                });
         }
 
         const delayDebounceFn = setTimeout(() => {
             // Send Axios request here
-            if (props.fetchGamesByKeyword) {
-                if (searchTerm === "") {
-                    history.push("/search");
-                } else {
-                    fetchMyAPI();
-                    history.push(`/search?q=${searchTerm}`);
-                }
-            }
+            fetchMyAPI();
         }, 550);
 
         return () => clearTimeout(delayDebounceFn);
@@ -58,56 +66,34 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
     };
     const renderSearchPreview = () => {
         if (data) {
-            if (data.games) {
-                if (data.games.length > 0) {
-                    return data.games.map((game: any, index: number) => {
-                        return (
-                            <div
-                                className={`matchRow`}
-                                onClick={() =>
-                                    history.push(`/game/${game.game_id}`)
-                                }
-                            >
-                                <img
-                                    className={`matchRowImage matchRowImage${index}`}
-                                    src={game.cover_url}
-                                    onLoad={() => {
-                                        // anime({
-                                        //     targets: `.matchRowImage${index}`,
-                                        //     // Properties
-                                        //     // Animation Parameters
-                                        //     opacity: ["0", "1"],
-                                        //     duration: 750,
-                                        //     easing: "easeOutQuad",
-                                        // });
-                                    }}
-                                    alt="game"
-                                ></img>
-                                <div className="matchTextWrap">
-                                    <p className="matchTitle">{game.title}</p>
-                                    <p className="matchPrice">
-                                        $
-                                        {parseFloat(
-                                            game.price_after_discount
-                                        ).toFixed(2)}
-                                    </p>
-                                </div>
+            console.log(data);
+            if (data === MANY_ERROR)
+                return <h1>Too Many Results, Narrow Your Search</h1>;
+            else if (data instanceof Array) {
+                return data.map((media: any, index: number) => {
+                    return (
+                        <div key={index} className="nomineeMedia">
+                            <img src={media.Poster} alt="poster" />
+                            <div className="nomineeMediaTextWrap">
+                                <h1>{media.Title}</h1>
+                                <p>{media.Type}</p>
                             </div>
-                        );
-                    });
-                }
+                        </div>
+                    );
+                });
             }
         }
     };
     return (
         <React.Fragment>
+            <h1 className="searchAndNomineeTitle">Search</h1>
             <form className={"searchBarForm"}>
                 <input
                     autoFocus={false}
                     data-testid="searchBarInput"
                     className="searchBarInput"
                     type="search"
-                    placeholder="Search games"
+                    placeholder="Search titles"
                     name="search"
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onKeyDown={handleKeyDown}
@@ -127,10 +113,9 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                         isComponentVisible ? "" : "hideMatchContainer"
                     }`}
                     ref={ref}
-                >
-                    {renderSearchPreview()}
-                </div>
+                ></div>
             </form>
+            <div className="nomineeMediaContainer">{renderSearchPreview()}</div>
         </React.Fragment>
     );
 };
