@@ -449,6 +449,14 @@ body {
   letter-spacing: 0.1rem;
 }
 
+@keyframes floatingIronMan {
+  from {
+    transform: translate3d(0px, 5%, 0px);
+  }
+  to {
+    transform: translate3d(0px, 0px, 0px);
+  }
+}
 .introBanner {
   position: relative;
   width: 100vw;
@@ -464,31 +472,85 @@ body {
     height: 50rem;
   }
 }
-.introBanner img {
+.introBanner .introBannerImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.introBanner .introBannerTitle {
-  text-transform: uppercase;
+.introBanner .ironManImage {
+  width: 12rem;
+  height: 12rem;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 3rem;
-  left: 2rem;
-  z-index: 1;
-  width: 50%;
+  right: 5%;
+  bottom: -10%;
+  animation: floatingIronMan 2s infinite alternate;
 }
 @media screen and (min-width: 520px) {
-  .introBanner .introBannerTitle {
-    font-size: 4rem;
-    left: 5rem;
+  .introBanner .ironManImage {
+    width: 20rem;
+    height: 20rem;
+    bottom: -20%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .introBanner .ironManImage {
+    width: 35rem;
+    height: 35rem;
   }
 }
 @media screen and (min-width: 992px) {
-  .introBanner .introBannerTitle {
-    font-size: 6rem;
+  .introBanner .ironManImage {
+    width: 35rem;
+    height: 35rem;
+  }
+}
+.introBanner .introBannerTextWrap {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 2rem;
+  width: 50%;
+}
+@media screen and (min-width: 768px) {
+  .introBanner .introBannerTextWrap {
     left: 5rem;
+  }
+}
+.introBanner .introBannerTextWrap .hulkImage {
+  position: absolute;
+  left: 20%;
+  width: 30%;
+  object-fit: cover;
+}
+.introBanner .introBannerTextWrap .introBannerTitle {
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  font-size: 3rem;
+}
+@media screen and (min-width: 520px) {
+  .introBanner .introBannerTextWrap .introBannerTitle {
+    font-size: 4rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .introBanner .introBannerTextWrap .introBannerTitle {
+    font-size: 6rem;
+  }
+}
+.introBanner .introBannerTextWrap .introBannerTitleDesc {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+}
+@media screen and (min-width: 768px) {
+  .introBanner .introBannerTextWrap .introBannerTitleDesc {
+    font-size: 2rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .introBanner .introBannerTextWrap .introBannerTitleDesc {
+    font-size: 2.5rem;
   }
 }
 .introBanner .modalFade {

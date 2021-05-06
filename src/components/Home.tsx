@@ -57,11 +57,22 @@ const Home: React.FC<{}> = () => {
         <React.Fragment>
             <div className="introBanner">
                 <img
+                    className="introBannerImage"
                     alt=""
                     src="https://allears.net/wp-content/uploads/2020/10/Avengers-Infinity-War-Poster.jpg"
                 ></img>
-                <h1 className="introBannerTitle">2021 Nominees</h1>
+                <div className="introBannerTextWrap">
+                    <h1 className="introBannerTitle">2021 Nominees</h1>
+                    <p className="introBannerTitleDesc">
+                        Search titles on OMDB and nominate your top 5.
+                    </p>
+                </div>
                 <div className="modalFade"></div>
+                <img
+                    className="ironManImage"
+                    alt=""
+                    src="https://purepng.com/public/uploads/large/purepng.com-ironmanironmansuperheromarvel-comicscharactermarvel-studiosrobert-downey-jrtony-stark-1701528612052n7gmm.png"
+                ></img>
             </div>
             <div className="searchAndNomineeSection">
                 <h1 className="searchAndNomineeTitle">Search</h1>
