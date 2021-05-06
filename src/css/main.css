@@ -341,12 +341,8 @@ template,
  */
 body {
   margin: 0;
-  background: linear-gradient(to bottom, #072142, #061c37, #07182b, #061220, #020b16);
+  background: #212121;
   color: white;
-  background-repeat: no-repeat;
-  background-size: cover;
-  overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 a {
@@ -361,7 +357,7 @@ html {
 
 body {
   /*Make default font-size bigger. If default font-size is 16px; 1.6 rem = 16 px*/
-  font: 1.1rem "Futura Medium", helvetica, arial, sans-serif;
+  font: 1.1rem "Square", helvetica, arial, sans-serif;
 }
 
 @font-face {
@@ -387,6 +383,50 @@ body {
 @font-face {
   font-family: "Abril Fat";
   src: url(../fonts/AbrilFatface-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Square";
+  src: url(../fonts/Square.woff2) format("woff2");
+}
+.nomineeTitle {
+  font-size: 5rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.nomineeMediaContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 3rem;
+}
+@media screen and (min-width: 1200px) {
+  .nomineeMediaContainer {
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 3rem;
+  }
+}
+.nomineeMediaContainer img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.nomineeMediaTextWrap {
+  text-transform: uppercase;
+  margin-top: 1.5rem;
+}
+.nomineeMediaTextWrap h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.nomineeMediaTextWrap p {
+  color: #858585;
+  font-weight: bold;
+  margin: 0;
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
 }
 
 /*# sourceMappingURL=main.css.map */
