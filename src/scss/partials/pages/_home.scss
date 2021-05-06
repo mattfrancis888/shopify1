@@ -95,7 +95,8 @@
     }
 }
 
-.nominateButton {
+.nominateButton,
+.removeButton {
     cursor: pointer;
     text-transform: uppercase;
     background: red;

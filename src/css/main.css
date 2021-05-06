@@ -503,7 +503,8 @@ body {
   letter-spacing: 0.1rem;
 }
 
-.nominateButton {
+.nominateButton,
+.removeButton {
   cursor: pointer;
   text-transform: uppercase;
   background: red;

@@ -21,18 +21,18 @@ const Home: React.FC<{}> = () => {
             setCart(parsedLocalCart);
         }
     }, []);
-    // const removeItem = (gameId: number) => {
-    //     //create cartCopy
-    //     let cartCopy: any = [...cart];
+    const removeItem = (title: String) => {
+        //create cartCopy
+        let cartCopy: any = [...cart];
 
-    //     cartCopy = cartCopy.filter((item: Media) => item.Title != title);
+        cartCopy = cartCopy.filter((item: Media) => item.Title !== title);
 
-    //     //update state and local
-    //     setCart(cartCopy);
+        //update state and local
+        setCart(cartCopy);
 
-    //     let cartString = JSON.stringify(cartCopy);
-    //     localStorage.setItem("cart", cartString);
-    // };
+        let cartString = JSON.stringify(cartCopy);
+        localStorage.setItem("cart", cartString);
+    };
 
     const renderMedias = () => {
         if (cart) {
@@ -44,8 +44,14 @@ const Home: React.FC<{}> = () => {
                                 <img src={media.Poster} alt="poster" />
                                 <div className="nomineeMediaTextWrap">
                                     <h1>{media.Title}</h1>
-                                    <p>{media.Type}</p>
+                                    <p>{media.Year}</p>
                                 </div>
+                                <button
+                                    className="removeButton"
+                                    onClick={() => removeItem(media.Title)}
+                                >
+                                    Remove
+                                </button>
                             </div>
                         );
                     })}
