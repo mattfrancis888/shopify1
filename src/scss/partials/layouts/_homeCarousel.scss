@@ -1,0 +1,137 @@
+// .communityContainerCarousel {
+//     display: flex;
+// }
+
+.gameCarouselWrap {
+    width: 100%;
+}
+
+.sliderAndDotWrap {
+    position: relative;
+}
+.dotWrap {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    justify-content: center;
+    width: 100%;
+    background-color: #0b0d12;
+    button {
+        position: relative;
+        transition: background-color 0.2s;
+        background: rgba(255, 255, 255, 0.5);
+        outline: none !important;
+        box-shadow: none !important;
+        border: none;
+        margin: 0;
+        margin-right: 0.3rem;
+        width: 10rem;
+        padding: 0.4rem;
+    }
+    .carousel__dot--selected {
+        background: #0086ca !important;
+    }
+}
+.dotInnerWrap {
+    padding-bottom: 0.5rem;
+}
+.homeCarouselContainer {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    .pictureImageWrap {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 0%;
+            @media screen and (min-width: $md_breakpoint) {
+                object-position: 60% 50%; //default
+            }
+        }
+    }
+}
+
+.backgroundContainer {
+    position: relative;
+    background: black;
+    height: 100%;
+    text-align: center;
+}
+
+.dotFill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #00aeff;
+}
+.dotFillHide {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+.slideImageLogoAndDescWrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    @media screen and (min-width: $md_breakpoint) {
+        padding-top: 5rem;
+        padding-left: 5rem;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.slideImageLogo {
+    width: 18rem;
+    @media screen and (min-width: $md_breakpoint) {
+        width: 26rem;
+    }
+}
+.slideDesc {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin: 0;
+    margin-top: 1.5rem;
+    text-shadow: 4px 7px 17px rgb(0 0 0 / 80%);
+
+    @media screen and (min-width: $sm_breakpoint) {
+        font-size: 4rem;
+        margin-top: 2rem;
+    }
+    @media screen and (min-width: $md_breakpoint) {
+        font-size: 4rem;
+        margin-top: 3rem;
+    }
+    @media screen and (min-width: $lg_breakpoint) {
+        font-size: 6.8rem;
+        width: 50rem;
+    }
+}
+
+.slideBackground {
+    width: 100%;
+    height: 100%;
+    background: red;
+    background-size: cover;
+}

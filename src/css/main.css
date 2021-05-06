@@ -848,4 +848,154 @@ body {
   border: 1px solid red;
 }
 
+.gameCarouselWrap {
+  width: 100%;
+}
+
+.sliderAndDotWrap {
+  position: relative;
+}
+
+.dotWrap {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  justify-content: center;
+  width: 100%;
+  background-color: #0b0d12;
+}
+.dotWrap button {
+  position: relative;
+  transition: background-color 0.2s;
+  background: rgba(255, 255, 255, 0.5);
+  outline: none !important;
+  box-shadow: none !important;
+  border: none;
+  margin: 0;
+  margin-right: 0.3rem;
+  width: 10rem;
+  padding: 0.4rem;
+}
+.dotWrap .carousel__dot--selected {
+  background: #0086ca !important;
+}
+
+.dotInnerWrap {
+  padding-bottom: 0.5rem;
+}
+
+.homeCarouselContainer {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.homeCarouselContainer .pictureImageWrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.homeCarouselContainer .pictureImageWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0%;
+}
+@media screen and (min-width: 768px) {
+  .homeCarouselContainer .pictureImageWrap img {
+    object-position: 60% 50%;
+  }
+}
+
+.backgroundContainer {
+  position: relative;
+  background: black;
+  height: 100%;
+  text-align: center;
+}
+
+.dotFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #00aeff;
+}
+
+.dotFillHide {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.slideImageLogoAndDescWrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (min-width: 768px) {
+  .slideImageLogoAndDescWrap {
+    padding-top: 5rem;
+    padding-left: 5rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+}
+
+.slideImageLogo {
+  width: 18rem;
+}
+@media screen and (min-width: 768px) {
+  .slideImageLogo {
+    width: 26rem;
+  }
+}
+
+.slideDesc {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin: 0;
+  margin-top: 1.5rem;
+  text-shadow: 4px 7px 17px rgba(0, 0, 0, 0.8);
+}
+@media screen and (min-width: 520px) {
+  .slideDesc {
+    font-size: 4rem;
+    margin-top: 2rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .slideDesc {
+    font-size: 4rem;
+    margin-top: 3rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .slideDesc {
+    font-size: 6.8rem;
+    width: 50rem;
+  }
+}
+
+.slideBackground {
+  width: 100%;
+  height: 100%;
+  background: red;
+  background-size: cover;
+}
+
 /*# sourceMappingURL=main.css.map */

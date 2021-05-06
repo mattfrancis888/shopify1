@@ -8,11 +8,11 @@ const MANY_ERROR = "Too many results.";
 const MOVIE_NOT_FOUND = "Movie not found!";
 interface SearchbarProps {
     addItem(item: Media): void;
-    cart: any;
+    media: any;
 }
 
 const Searchbar: React.FC<SearchbarProps> = (props) => {
-    let { addItem, cart } = props;
+    let { addItem, media } = props;
     //Detect click outside of component:
     // https://stackoverflow.com/questions/32553158/detect-click-outside-react-component
 
@@ -75,15 +75,15 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
             else if (data === MOVIE_NOT_FOUND)
                 return <h1 className="noResultText">{MOVIE_NOT_FOUND}</h1>;
             else if (data instanceof Array) {
-                return data.map((media: Media, index: number) => {
-                    let mediaInLocalStorage = cart.find(
-                        (o: Media) => o.imdbID === media.imdbID
+                return data.map((mediaFromSearch: Media, index: number) => {
+                    let mediaInLocalStorage = media.find(
+                        (o: Media) => o.imdbID === mediaFromSearch.imdbID
                     );
                     return (
                         <div key={index} className="nomineeMedia">
                             <img
                                 src={
-                                    media.Poster !== "N/A"
+                                    mediaFromSearch.Poster !== "N/A"
                                         ? media.Poster
                                         : NoImageFound
                                 }
@@ -104,8 +104,8 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                                 <h1>Nominated</h1>
                             </div>
                             <div className="nomineeMediaTextWrap">
-                                <h1>{media.Title}</h1>
-                                <p>{media.Year}</p>
+                                <h1>{mediaFromSearch.Title}</h1>
+                                <p>{mediaFromSearch.Year}</p>
                             </div>
                             <button
                                 className={`nominateButton  ${
@@ -115,7 +115,7 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                                 }
                                 `}
                                 onClick={() => {
-                                    addItem(media);
+                                    addItem(mediaFromSearch);
                                 }}
                                 disabled={
                                     mediaInLocalStorage != null ? true : false
