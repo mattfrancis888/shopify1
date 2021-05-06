@@ -3,26 +3,56 @@ import history from "../browserHistory";
 import { AiOutlineSearch } from "react-icons/ai";
 import axios from "axios";
 
-import useComponentVisible from "../useComponentVisible";
 const MANY_ERROR = "Too many results.";
 interface SearchbarProps {
     fetchGamesByKeyword?(searchKeyword: string): void;
 }
 
+interface Media {
+    Title: string;
+    Year: string;
+    imdbID: string;
+    Type: string;
+    Poster: string;
+}
+
 const Searchbar: React.FC<SearchbarProps> = (props) => {
     //Detect click outside of component:
     // https://stackoverflow.com/questions/32553158/detect-click-outside-react-component
-    const {
-        ref,
-        isComponentVisible,
-        setIsComponentVisible,
-    } = useComponentVisible(true);
+
     const searchBarInputRef = useRef<HTMLInputElement>(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [data, dataSet] = useState<any>(null);
+    let [cart, setCart] = useState<[]>([]);
+    const addItem = (item: Media) => {
+        //create a copy of our cart state, avoid overwritting existing state
+        let cartCopy: any = [...cart];
+
+        //assuming we have an ID field in our item
+        let { Title } = item;
+
+        //look for item in cart array
+        let existingItem = cartCopy.find(
+            (cartItem: Media) => cartItem.Title === Title
+        );
+
+        //if item already exists
+
+        if (existingItem) {
+        } else {
+            //if item doesn't exist, simply add it
+            cartCopy.push(item);
+        }
+
+        //update app state
+        setCart(cartCopy);
+
+        //make cart a string and store in local space
+        let stringCart = JSON.stringify(cartCopy);
+        localStorage.setItem("cart", stringCart);
+    };
 
     useEffect(() => {
-        console.log(searchTerm);
         async function fetchMyAPI() {
             const LINK = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${searchTerm}`;
             axios
@@ -69,7 +99,7 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
             if (data === MANY_ERROR)
                 return <h1>Too Many Results, Narrow Your Search</h1>;
             else if (data instanceof Array) {
-                return data.map((media: any, index: number) => {
+                return data.map((media: Media, index: number) => {
                     return (
                         <div key={index} className="nomineeMedia">
                             <img src={media.Poster} alt="poster" />
@@ -78,8 +108,14 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                             </div>
                             <div className="nomineeMediaTextWrap">
                                 <h1>{media.Title}</h1>
-                                <p>{media.Type}</p>
+                                <p>{media.Year}</p>
                             </div>
+                            <button
+                                className="nominateButton"
+                                onClick={() => addItem(media)}
+                            >
+                                Nominate
+                            </button>
                         </div>
                     );
                 });
@@ -101,7 +137,6 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                     onKeyDown={handleKeyDown}
                     autoComplete="off"
                     ref={searchBarInputRef}
-                    onClick={() => setIsComponentVisible(true)}
                 />
                 <AiOutlineSearch
                     className="searchBarIcons"
@@ -110,12 +145,6 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                         history.push(`/search?q=${searchTerm}`);
                     }}
                 />
-                <div
-                    className={`matchContainer ${
-                        isComponentVisible ? "" : "hideMatchContainer"
-                    }`}
-                    ref={ref}
-                ></div>
             </form>
             <div className="nomineeMediaContainer">{renderSearchPreview()}</div>
         </React.Fragment>

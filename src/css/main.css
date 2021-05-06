@@ -503,6 +503,14 @@ body {
   letter-spacing: 0.1rem;
 }
 
+.nominateButton {
+  cursor: pointer;
+  text-transform: uppercase;
+  background: red;
+  color: white;
+  padding: 2rem;
+}
+
 @keyframes floatingIronMan {
   from {
     transform: translate3d(0px, 5%, 0px);
