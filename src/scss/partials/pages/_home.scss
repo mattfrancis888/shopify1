@@ -1,7 +1,7 @@
-.nomineeSection {
+.searchAndNomineeSection {
     padding: 0rem 5rem;
 }
-.nomineeTitle {
+.searchAndNomineeTitle {
     font-size: 5rem;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
@@ -13,7 +13,7 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 3rem;
     @media screen and (min-width: $xl_breakpoint) {
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         grid-gap: 3rem;
     }
     img {
