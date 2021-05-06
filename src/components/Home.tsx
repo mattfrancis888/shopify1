@@ -21,6 +21,35 @@ const Home: React.FC<{}> = () => {
             setCart(parsedLocalCart);
         }
     }, []);
+
+    const addItem = (item: Media) => {
+        //create a copy of our cart state, avoid overwritting existing state
+        let cartCopy: any = [...cart];
+
+        //assuming we have an ID field in our item
+        let { Title } = item;
+
+        //look for item in cart array
+        let existingItem = cartCopy.find(
+            (cartItem: Media) => cartItem.Title === Title
+        );
+
+        //if item already exists
+
+        if (existingItem) {
+        } else {
+            //if item doesn't exist, simply add it
+            cartCopy.push(item);
+        }
+
+        //update app state
+        setCart(cartCopy);
+
+        //make cart a string and store in local space
+        let stringCart = JSON.stringify(cartCopy);
+        localStorage.setItem("cart", stringCart);
+    };
+
     const removeItem = (title: String) => {
         //create cartCopy
         let cartCopy: any = [...cart];
@@ -59,6 +88,7 @@ const Home: React.FC<{}> = () => {
             );
         }
     };
+
     return (
         <React.Fragment>
             <div className="introBanner">
@@ -81,7 +111,7 @@ const Home: React.FC<{}> = () => {
                 ></img>
             </div>
             <div className="searchAndNomineeSection">
-                <Searchbar />
+                <Searchbar cart={cart} addItem={addItem} />
 
                 <h1 className="searchAndNomineeTitle">Nominees</h1>
                 <div className="nomineeMediaContainer">{renderMedias()}</div>

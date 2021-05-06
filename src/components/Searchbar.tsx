@@ -5,44 +5,18 @@ import axios from "axios";
 import { Media } from "./Home";
 const MANY_ERROR = "Too many results.";
 interface SearchbarProps {
-    fetchGamesByKeyword?(searchKeyword: string): void;
+    addItem(item: Media): void;
+    cart: any;
 }
 
 const Searchbar: React.FC<SearchbarProps> = (props) => {
+    let { addItem, cart } = props;
     //Detect click outside of component:
     // https://stackoverflow.com/questions/32553158/detect-click-outside-react-component
 
     const searchBarInputRef = useRef<HTMLInputElement>(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [data, dataSet] = useState<any>(null);
-    let [cart, setCart] = useState<[]>([]);
-    const addItem = (item: Media) => {
-        //create a copy of our cart state, avoid overwritting existing state
-        let cartCopy: any = [...cart];
-
-        //assuming we have an ID field in our item
-        let { Title } = item;
-
-        //look for item in cart array
-        let existingItem = cartCopy.find(
-            (cartItem: Media) => cartItem.Title === Title
-        );
-
-        //if item already exists
-
-        if (existingItem) {
-        } else {
-            //if item doesn't exist, simply add it
-            cartCopy.push(item);
-        }
-
-        //update app state
-        setCart(cartCopy);
-
-        //make cart a string and store in local space
-        let stringCart = JSON.stringify(cartCopy);
-        localStorage.setItem("cart", stringCart);
-    };
 
     useEffect(() => {
         async function fetchMyAPI() {
@@ -94,8 +68,26 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                 return data.map((media: Media, index: number) => {
                     return (
                         <div key={index} className="nomineeMedia">
-                            <img src={media.Poster} alt="poster" />
-                            <div className="nomineeMediaSelected">
+                            <img
+                                src={media.Poster}
+                                className={
+                                    cart.find(
+                                        (o: Media) => o.Title === media.Title
+                                    ) != null
+                                        ? "showNomineePosterBorder"
+                                        : "hideNominePosterBorder"
+                                }
+                                alt="poster"
+                            />
+                            <div
+                                className={
+                                    cart.find(
+                                        (o: Media) => o.Title === media.Title
+                                    ) != null
+                                        ? "nomineeMediaSelected"
+                                        : "nomineeMediaUnselected"
+                                }
+                            >
                                 <h1>Nominated</h1>
                             </div>
                             <div className="nomineeMediaTextWrap">
@@ -104,7 +96,16 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                             </div>
                             <button
                                 className="nominateButton"
-                                onClick={() => addItem(media)}
+                                onClick={() => {
+                                    addItem(media);
+                                }}
+                                disabled={
+                                    cart.find(
+                                        (o: Media) => o.Title === media.Title
+                                    ) != null
+                                        ? true
+                                        : false
+                                }
                             >
                                 Nominate
                             </button>
