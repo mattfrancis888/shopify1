@@ -9,6 +9,7 @@ export interface Media {
     Type: string;
     Poster: string;
 }
+const MAX_NOMINEE = 5;
 const Home: React.FC<{}> = () => {
     let [cart, setCart] = useState<[]>([]);
     let localCart = localStorage.getItem("cart");
@@ -26,11 +27,11 @@ const Home: React.FC<{}> = () => {
         let cartCopy: any = [...cart];
 
         //assuming we have an ID field in our item
-        let { Title } = item;
+        let { imdbID } = item;
 
         //look for item in cart array
         let existingItem = cartCopy.find(
-            (cartItem: Media) => cartItem.Title === Title
+            (cartItem: Media) => cartItem.imdbID === imdbID
         );
 
         //if item already exists
@@ -49,11 +50,11 @@ const Home: React.FC<{}> = () => {
         localStorage.setItem("cart", stringCart);
     };
 
-    const removeItem = (title: String) => {
+    const removeItem = (imdbID: String) => {
         //create cartCopy
         let cartCopy: any = [...cart];
 
-        cartCopy = cartCopy.filter((item: Media) => item.Title !== title);
+        cartCopy = cartCopy.filter((item: Media) => item.imdbID !== imdbID);
 
         //update state and local
         setCart(cartCopy);
@@ -88,7 +89,7 @@ const Home: React.FC<{}> = () => {
                                     </div>
                                     <button
                                         className="removeButton"
-                                        onClick={() => removeItem(media.Title)}
+                                        onClick={() => removeItem(media.imdbID)}
                                     >
                                         Remove
                                     </button>
@@ -128,8 +129,21 @@ const Home: React.FC<{}> = () => {
             </div>
             <div className="searchAndNomineeSection">
                 <Searchbar cart={cart} addItem={addItem} />
-
                 <h1 className="searchAndNomineeTitle">Nominees</h1>
+
+                {
+                    //@ts-ignore
+                    cart.length === MAX_NOMINEE && (
+                        <div className="maxNomineesBanner">
+                            <h1 className="maxNomineesTitle">
+                                Your 2021 Winners
+                            </h1>
+                            <p className="maxNomineesDesc">
+                                You have picked your top 5 nominees
+                            </p>
+                        </div>
+                    )
+                }
                 <div className="nomineeMediaContainer">{renderMedias()}</div>
             </div>
         </React.Fragment>

@@ -76,6 +76,9 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                 return <h1 className="noResultText">{MOVIE_NOT_FOUND}</h1>;
             else if (data instanceof Array) {
                 return data.map((media: Media, index: number) => {
+                    let mediaInLocalStorage = cart.find(
+                        (o: Media) => o.imdbID === media.imdbID
+                    );
                     return (
                         <div key={index} className="nomineeMedia">
                             <img
@@ -85,9 +88,7 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                                         : NoImageFound
                                 }
                                 className={
-                                    cart.find(
-                                        (o: Media) => o.Title === media.Title
-                                    ) != null
+                                    mediaInLocalStorage != null
                                         ? "showNomineePosterBorder"
                                         : "hideNominePosterBorder"
                                 }
@@ -95,9 +96,7 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                             />
                             <div
                                 className={
-                                    cart.find(
-                                        (o: Media) => o.Title === media.Title
-                                    ) != null
+                                    mediaInLocalStorage != null
                                         ? "nomineeMediaSelected"
                                         : "nomineeMediaUnselected"
                                 }
@@ -109,19 +108,22 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                                 <p>{media.Year}</p>
                             </div>
                             <button
-                                className="nominateButton"
+                                className={`nominateButton  ${
+                                    mediaInLocalStorage != null
+                                        ? "nominateButtonDisabled"
+                                        : ""
+                                }
+                                `}
                                 onClick={() => {
                                     addItem(media);
                                 }}
                                 disabled={
-                                    cart.find(
-                                        (o: Media) => o.Title === media.Title
-                                    ) != null
-                                        ? true
-                                        : false
+                                    mediaInLocalStorage != null ? true : false
                                 }
                             >
-                                Nominate
+                                {mediaInLocalStorage != null
+                                    ? "Nominated"
+                                    : "Nominate"}
                             </button>
                         </div>
                     );

@@ -416,11 +416,13 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
+  row-gap: 5rem;
 }
 @media screen and (min-width: 520px) {
   .nomineeMediaContainer {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1.5rem;
+    row-gap: 5rem;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -656,6 +658,40 @@ body {
   background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.8) 100%);
 }
 
+.maxNomineesBanner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: red;
+  padding: 3rem;
+}
+
+.maxNomineesTitle {
+  color: red;
+  font-size: 2rem;
+  -webkit-text-stroke-width: 1px;
+  letter-spacing: 0.2rem;
+  -webkit-text-stroke-color: white;
+  margin: 0;
+}
+@media screen and (min-width: 768px) {
+  .maxNomineesTitle {
+    font-size: 3rem;
+    -webkit-text-stroke-width: 2px;
+  }
+}
+
+.maxNomineesDesc {
+  font-size: 1.2rem;
+  margin: 0;
+  margin-top: 0.5rem;
+}
+@media screen and (min-width: 768px) {
+  .maxNomineesDesc {
+    font-size: 3rem;
+  }
+}
+
 .searchBarForm {
   background: #3718cb;
   display: flex;
@@ -675,6 +711,16 @@ body {
 .searchBarForm ::placeholder {
   color: white;
   text-transform: uppercase;
+}
+@media screen and (min-width: 992px) {
+  .searchBarForm {
+    width: 50%;
+    padding: 1.2rem;
+    padding-left: 1.5rem;
+  }
+}
+.searchBarForm input[type=search] {
+  font-size: 2rem;
 }
 
 .searchBarIcons {
@@ -790,6 +836,16 @@ body {
   .matchTextWrap .matchPrice {
     margin-top: 0.5rem;
   }
+}
+
+.nominateButtonDisabled {
+  cursor: default;
+  background: red;
+  border: 1px solid red;
+}
+.nominateButtonDisabled:hover {
+  background: red;
+  border: 1px solid red;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -21,9 +21,11 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1rem;
+    row-gap: 5rem;
     @media screen and (min-width: $sm_breakpoint) {
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 1.5rem;
+        row-gap: 5rem;
     }
     @media screen and (min-width: $xl_breakpoint) {
         grid-template-columns: repeat(5, 1fr);
@@ -235,4 +237,36 @@
             rgba(0, 0, 0, 0.8) 100%
         );
     }
+}
+
+.maxNomineesBanner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: red;
+    padding: 3rem;
+}
+
+.maxNomineesTitle {
+    color: red;
+    font-size: 2rem;
+    -webkit-text-stroke-width: 1px;
+    letter-spacing: 0.2rem;
+    @media screen and (min-width: $md_breakpoint) {
+        font-size: 3rem;
+        -webkit-text-stroke-width: 2px;
+    }
+
+    -webkit-text-stroke-color: white;
+    margin: 0;
+}
+
+.maxNomineesDesc {
+    font-size: 1.2rem;
+    @media screen and (min-width: $md_breakpoint) {
+        font-size: 3rem;
+    }
+
+    margin: 0;
+    margin-top: 0.5rem;
 }
