@@ -1,43 +1,44 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Searchbar from "./Searchbar";
+import { title } from "process";
+export interface Media {
+    Title: string;
+    Year: string;
+    imdbID: string;
+    Type: string;
+    Poster: string;
+}
 const Home: React.FC<{}> = () => {
     const [medias, setMedias] = useState<any>(null);
+    let [cart, setCart] = useState<[]>([]);
+    let localCart = localStorage.getItem("cart");
     useEffect(() => {
-        // const LINK = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=avengers`;
-        // axios
-        //     .get(LINK)
-        //     .then((response) => {
-        //         // handle success
-        //         // console.log(response.data.Search.slice(0, 6));
-        //         setMedias(response.data.Search.slice(0, 5));
-        //     })
-        //     .catch(function (error) {
-        //         // handle error
-        //         setMedias([]);
-        //         console.log("API ERROR:", error);
-        //     });
+        if (localCart != null) {
+            let parsedLocalCart = JSON.parse(localCart);
+            //load persisted cart into state if it exists
+            // console.log(parsedLocalCart);
+            setCart(parsedLocalCart);
+        }
     }, []);
-    const renderSearchMedias = () => {
-        <React.Fragment>
-            {medias.map((media: any, index: number) => {
-                return (
-                    <div key={index} className="nomineeMedia">
-                        <img src={media.Poster} alt="poster" />
-                        <div className="nomineeMediaTextWrap">
-                            <h1>{media.Title}</h1>
-                            <p>{media.Type}</p>
-                        </div>
-                    </div>
-                );
-            })}
-        </React.Fragment>;
-    };
+    // const removeItem = (gameId: number) => {
+    //     //create cartCopy
+    //     let cartCopy: any = [...cart];
+
+    //     cartCopy = cartCopy.filter((item: Media) => item.Title != title);
+
+    //     //update state and local
+    //     setCart(cartCopy);
+
+    //     let cartString = JSON.stringify(cartCopy);
+    //     localStorage.setItem("cart", cartString);
+    // };
+
     const renderMedias = () => {
-        if (medias) {
+        if (cart) {
             return (
                 <React.Fragment>
-                    {medias.map((media: any, index: number) => {
+                    {cart.map((media: Media, index: number) => {
                         return (
                             <div key={index} className="nomineeMedia">
                                 <img src={media.Poster} alt="poster" />

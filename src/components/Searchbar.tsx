@@ -2,18 +2,10 @@ import React, { useRef, useEffect, useState } from "react";
 import history from "../browserHistory";
 import { AiOutlineSearch } from "react-icons/ai";
 import axios from "axios";
-
+import { Media } from "./Home";
 const MANY_ERROR = "Too many results.";
 interface SearchbarProps {
     fetchGamesByKeyword?(searchKeyword: string): void;
-}
-
-interface Media {
-    Title: string;
-    Year: string;
-    imdbID: string;
-    Type: string;
-    Poster: string;
 }
 
 const Searchbar: React.FC<SearchbarProps> = (props) => {
