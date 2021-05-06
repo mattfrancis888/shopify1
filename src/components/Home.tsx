@@ -52,14 +52,25 @@ const Home: React.FC<{}> = () => {
             );
         }
     };
+    const searchKeyword = () => {};
     return (
-        <div className="searchAndNomineeSection">
-            <h1 className="searchAndNomineeTitle">Search</h1>
-            <Searchbar />
-            <div className="nomineeMediaContainer">{renderMedias()}</div>
-            <h1 className="searchAndNomineeTitle">Nominees</h1>
-            <div className="nomineeMediaContainer">{renderMedias()}</div>
-        </div>
+        <React.Fragment>
+            <div className="introBanner">
+                <img
+                    alt=""
+                    src="https://allears.net/wp-content/uploads/2020/10/Avengers-Infinity-War-Poster.jpg"
+                ></img>
+                <h1 className="introBannerTitle">2021 Nominees</h1>
+                <div className="modalFade"></div>
+            </div>
+            <div className="searchAndNomineeSection">
+                <h1 className="searchAndNomineeTitle">Search</h1>
+                <Searchbar />
+                <div className="nomineeMediaContainer">{renderMedias()}</div>
+                <h1 className="searchAndNomineeTitle">Nominees</h1>
+                <div className="nomineeMediaContainer">{renderMedias()}</div>
+            </div>
+        </React.Fragment>
     );
 };
 

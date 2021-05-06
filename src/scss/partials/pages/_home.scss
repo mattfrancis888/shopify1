@@ -1,5 +1,5 @@
 .searchAndNomineeSection {
-    padding: 0rem 3rem;
+    padding: 0rem 3 rem;
     @media screen and (min-width: $md_breakpoint) {
         padding: 0rem 5rem;
     }
@@ -46,5 +46,56 @@
         margin-top: 0.5rem;
         font-size: 1.2rem;
         letter-spacing: 0.1rem;
+    }
+}
+
+.introBanner {
+    position: relative;
+
+    width: 100vw;
+    height: 30rem;
+    @media screen and (min-width: $md_breakpoint) {
+        height: 40rem;
+    }
+    @media screen and (min-width: $lg_breakpoint) {
+        height: 50rem;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .introBannerTitle {
+        text-transform: uppercase;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 3rem;
+        left: 2rem;
+        z-index: 1;
+        width: 50%;
+        @media screen and (min-width: $sm_breakpoint) {
+            font-size: 4rem;
+            left: 5rem;
+        }
+        @media screen and (min-width: $lg_breakpoint) {
+            font-size: 6rem;
+            left: 5rem;
+        }
+    }
+    .modalFade {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        background-image: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.8) 0,
+            rgba(0, 0, 0, 0) 40%,
+            rgba(0, 0, 0, 0) 75%,
+            rgba(0, 0, 0, 0.8) 100%
+        );
     }
 }
