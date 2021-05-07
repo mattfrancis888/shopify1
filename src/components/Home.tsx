@@ -106,11 +106,10 @@ const Home: React.FC<{}> = () => {
                 </div>
 
                 <LazyLoad>
-                    <Search medias={medias} addItem={addItem} />
-                </LazyLoad>
-
-                <LazyLoad offset={50}>
                     <Nominees medias={medias} removeItem={removeItem} />
+                </LazyLoad>
+                <LazyLoad offset={10}>
+                    <Search medias={medias} addItem={addItem} />
                 </LazyLoad>
             </div>
         </React.Fragment>

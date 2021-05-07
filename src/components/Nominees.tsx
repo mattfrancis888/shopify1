@@ -12,6 +12,10 @@ interface NomineeProps {
     removeItem(imdbID: String): void;
 }
 const Nominee: React.FC<NomineeProps> = (props) => {
+    const [startTrail, setStartTrail] = useState(false);
+    useEffect(() => {
+        setStartTrail(true);
+    }, []);
     const top = useSpring({
         from: {
             width: "0%",
@@ -82,9 +86,14 @@ const Nominee: React.FC<NomineeProps> = (props) => {
             if (medias.length > 0)
                 return (
                     <React.Fragment>
-                        {medias.map((media: Media, index: number) => {
+                        {trail.map((animation, index: number) => {
+                            let media = medias[index];
                             return (
-                                <div key={index} className="nomineeMedia">
+                                <animated.div
+                                    style={animation}
+                                    key={index}
+                                    className="nomineeMedia"
+                                >
                                     <img
                                         src={
                                             media.Poster !== "N/A"
@@ -109,7 +118,7 @@ const Nominee: React.FC<NomineeProps> = (props) => {
                                     >
                                         Remove
                                     </button>
-                                </div>
+                                </animated.div>
                             );
                         })}
                     </React.Fragment>
@@ -134,6 +143,22 @@ const Nominee: React.FC<NomineeProps> = (props) => {
             mass: 2,
             friction: 40,
             tension: 70,
+        },
+    });
+
+    const trail = useTrail(medias.length || 0, {
+        // marginTop: showPresentation ? `1.5rem` : `0px`,
+        transform: startTrail
+            ? `translate3d(0px,0%,0px)`
+            : `translate3d(0px,20%,0px)`,
+
+        opacity: startTrail ? 1 : 0,
+
+        config: {
+            // duration: 2000,
+            mass: 1,
+            tension: 225,
+            friction: 50,
         },
     });
 

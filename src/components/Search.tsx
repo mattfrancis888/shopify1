@@ -20,9 +20,13 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
     const searchBarInputRef = useRef<HTMLInputElement>(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [data, dataSet] = useState<any>(null);
-
+    const [startTrail, setStartTrail] = useState(false);
+    useEffect(() => {
+        setStartTrail(true);
+    }, []);
     useEffect(() => {
         async function fetchMyAPI() {
+            setStartTrail(false);
             const LINK = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${searchTerm}`;
             axios
                 .get(LINK)
@@ -35,11 +39,13 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                         dataSet(MANY_ERROR);
                     else if (response.data.Error === MOVIE_NOT_FOUND)
                         dataSet(MOVIE_NOT_FOUND);
+                    setStartTrail(true);
                 })
                 .catch(function (error) {
                     // handle error
 
                     console.log("API ERROR:", error);
+                    setStartTrail(true);
                 });
         }
 
@@ -65,6 +71,23 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
             // }
         }
     };
+
+    const trail = useTrail(data instanceof Array ? data.length : 0, {
+        // marginTop: showPresentation ? `1.5rem` : `0px`,
+        transform: startTrail
+            ? `translate3d(0px,0%,0px)`
+            : `translate3d(0px,20%,0px)`,
+
+        opacity: startTrail ? 1 : 0,
+
+        config: {
+            duration: 2000,
+            // mass: 1,
+            // tension: 225,
+            // friction: 50,
+        },
+    });
+
     const renderSearchPreview = () => {
         if (data) {
             if (data === MANY_ERROR)
@@ -76,12 +99,17 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
             else if (data === MOVIE_NOT_FOUND)
                 return <h1 className="noResultText">{MOVIE_NOT_FOUND}</h1>;
             else if (data instanceof Array) {
-                return data.map((mediaFromSearch: Media, index: number) => {
+                return trail.map((animation, index: number) => {
+                    let mediaFromSearch = data[index];
                     let mediasInLocalStorage = medias.find(
                         (o: Media) => o.imdbID === mediaFromSearch.imdbID
                     );
                     return (
-                        <div key={index} className="nomineeMedia">
+                        <animated.div
+                            style={animation}
+                            key={index}
+                            className="nomineeMedia"
+                        >
                             <img
                                 src={
                                     mediaFromSearch.Poster !== "N/A"
@@ -126,7 +154,7 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                                     ? "Nominated"
                                     : "Nominate"}
                             </button>
-                        </div>
+                        </animated.div>
                     );
                 });
             }
