@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Search from "./Search";
-import Nominee from "./Nominee";
+import Nominees from "./Nominees";
 import NoImageFound from "../img/NoImageFound.jpg";
 import HomeCarousel from "./HomeCarousel";
 import { useTransition, animated, useSpring, useTrail } from "react-spring";
@@ -14,7 +14,7 @@ export interface Media {
     Type: string;
     Poster: string;
 }
-const MAX_NOMINEE = 5;
+
 const Home: React.FC<{}> = () => {
     let [medias, setMedias] = useState<[]>([]);
     let localMedias = localStorage.getItem("media");
@@ -110,7 +110,7 @@ const Home: React.FC<{}> = () => {
                 </LazyLoad>
 
                 <LazyLoad offset={50}>
-                    <Nominee medias={medias} removeItem={removeItem} />
+                    <Nominees medias={medias} removeItem={removeItem} />
                 </LazyLoad>
             </div>
         </React.Fragment>

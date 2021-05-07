@@ -12,6 +12,70 @@ interface NomineeProps {
     removeItem(imdbID: String): void;
 }
 const Nominee: React.FC<NomineeProps> = (props) => {
+    const top = useSpring({
+        from: {
+            width: "0%",
+        },
+        to: {
+            width: "100%",
+        },
+
+        config: {
+            duration: 1000,
+            // mass: 1,
+            // tension: 250,
+            // friction: 30,
+        },
+    });
+
+    const right = useSpring({
+        from: {
+            height: "0%",
+        },
+        to: {
+            height: "100%",
+        },
+
+        delay: 1000,
+        config: {
+            duration: 1000,
+            // mass: 1,
+            // tension: 250,
+            // friction: 30,
+        },
+    });
+
+    const bottom = useSpring({
+        from: {
+            transform: "scaleX(0)",
+        },
+        to: {
+            transform: "scaleX(1)",
+        },
+        delay: 2000,
+        config: {
+            duration: 1000,
+            // mass: 1,
+            // tension: 250,
+            // friction: 30,
+        },
+    });
+
+    const left = useSpring({
+        from: {
+            transform: "scaleY(0)",
+        },
+        to: {
+            transform: "scaleY(1)",
+        },
+        delay: 3000,
+        config: {
+            duration: 1000,
+            // mass: 1,
+            // tension: 250,
+            // friction: 30,
+        },
+    });
     let { medias } = props;
     const renderMedias = () => {
         if (medias) {
@@ -90,6 +154,24 @@ const Nominee: React.FC<NomineeProps> = (props) => {
                         <p className="maxNomineesDesc">
                             You have picked your top 5 nominees
                         </p>
+                        <div className="bannerBorder">
+                            <animated.span
+                                className="top"
+                                style={top}
+                            ></animated.span>
+                            <animated.span
+                                className="right"
+                                style={right}
+                            ></animated.span>
+                            <animated.span
+                                className="bottom"
+                                style={bottom}
+                            ></animated.span>
+                            <animated.span
+                                className="left"
+                                style={left}
+                            ></animated.span>
+                        </div>
                     </div>
                 )
             }
