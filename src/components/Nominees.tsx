@@ -6,7 +6,18 @@ import HomeCarousel from "./HomeCarousel";
 import { useTransition, animated, useSpring, useTrail } from "react-spring";
 import useOnScreen from "../useOnScreen";
 import { Media } from "./Home";
+import Modal from "./Modal";
 export const MAX_NOMINEE = 5;
+
+export interface ModalProps {
+    onDismiss(): void;
+    title?: string;
+    content?: JSX.Element;
+    actions?: JSX.Element;
+    animation?: any;
+    fade?: any;
+}
+
 interface NomineeProps {
     medias: any;
     removeItem(imdbID: String): void;
@@ -15,6 +26,116 @@ const Nominee: React.FC<NomineeProps> = (props) => {
     let { medias } = props;
     const [startTrail, setStartTrail] = useState(false);
     const maxNomineesBannerRef = useRef<any>(null);
+    const [showModal, setShowModal] = useState(false);
+    const [firstRender, setFirstRender] = useState(true);
+
+    const [showModalContent, setShowModalContent] = useState<any>(null);
+
+    const transition = useTransition(showModal, {
+        from: {
+            transform: showModal ? "scale(0)" : "scale(1)",
+        },
+        enter: {
+            transform: showModal ? "scale(1)" : "scale(0)",
+        },
+
+        config: {
+            duration: 450,
+        },
+    });
+    const fade = useSpring({
+        from: {
+            backgroundColor: showModal
+                ? "rgba(52, 49, 49, 0)"
+                : "rgba(52, 49, 49, 0.4)",
+            pointerEvents: showModal ? "all" : "none",
+        },
+        to: {
+            backgroundColor: showModal
+                ? "rgba(52, 49, 49, 0.4)"
+                : "rgba(52, 49, 49, 0)",
+            pointerEvents: showModal ? "all" : "none",
+        },
+    });
+
+    const modalShow = (clickedMedia: any) => {
+        setFirstRender(false);
+        setShowModal(true);
+        setShowModalContent({ ...clickedMedia });
+        // props.fetchMediaGenreAndCast(clickedMedia.media_id);
+    };
+    const modalOnCancel = () => {
+        setShowModal(false);
+    };
+
+    const renderModal = () => {
+        return transition((style, item) => {
+            if (!firstRender)
+                return (
+                    <Modal
+                        animation={style}
+                        fade={fade}
+                        content={renderModalContent()}
+                        onDismiss={modalOnCancel}
+                    />
+                );
+            else {
+                <Modal
+                    content={renderModalContent()}
+                    onDismiss={modalOnCancel}
+                />;
+            }
+        });
+    };
+
+    const renderModalContent = () => {
+        return (
+            <div className="modalContentContainer" onLoad={() => {}}>
+                <div className="modalBannerContainer">
+                    <div className="modalBannerImageWrap">
+                        <img src={showModalContent?.banner_image} alt=""></img>
+
+                        <div className="modalFade"></div>
+                    </div>
+                    <div className="browseBannerTitleImageAndInfoWrap">
+                        <img
+                            src={showModalContent?.banner_title_image}
+                            alt=""
+                        ></img>
+                        <button
+                            className="modalWatchButton"
+                            onClick={() => {
+                                Number.isInteger(showModalContent?.media_id)
+                                    ? //@ts-ignore Small TS warning, too lazy to fix
+                                      addToWatching(showModalContent?.media_id)
+                                    : //   modalOnCancel();
+                                      alert(
+                                          "Trouble adding your movie to your watch list..."
+                                      );
+                                modalOnCancel();
+                            }}
+                        >
+                            Watch Now
+                        </button>
+                    </div>
+                </div>
+                <div className="modalInfoWrap">
+                    <div className="modalTextSection modalTextDateAndDescSection">
+                        <p className="modalMediaDate">
+                            {showModalContent?.media_date}
+                        </p>
+                        <p className="modalMediaDesc">
+                            {showModalContent?.media_description}
+                        </p>
+                    </div>
+                    <div className="modalTextSection modalTextCastAndGenreSection">
+                        <div className="modalCastAndGenre"></div>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
     useEffect(() => {
         setStartTrail(true);
     }, []);
@@ -108,6 +229,7 @@ const Nominee: React.FC<NomineeProps> = (props) => {
             // friction: 30,
         },
     });
+
     const renderMedias = () => {
         if (medias) {
             if (medias.length > 0)
@@ -120,6 +242,9 @@ const Nominee: React.FC<NomineeProps> = (props) => {
                                     style={animation}
                                     key={index}
                                     className="nomineeMedia"
+                                    onClick={() => {
+                                        modalShow({});
+                                    }}
                                 >
                                     <img
                                         src={
@@ -191,6 +316,7 @@ const Nominee: React.FC<NomineeProps> = (props) => {
 
     return (
         <React.Fragment>
+            {renderModal()}
             <animated.h1
                 style={translateTitle}
                 className="searchAndNomineeTitle"
