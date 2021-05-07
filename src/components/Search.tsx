@@ -164,7 +164,7 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                                 {mediasInLocalStorage != null
                                     ? "Nominated"
                                     : medias.length === MAX_NOMINEE
-                                    ? "Max Nominees Reached"
+                                    ? "No Spots"
                                     : "Nominate"}
                             </button>
                         </animated.div>

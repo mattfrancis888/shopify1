@@ -25,6 +25,25 @@ const Nominee: React.FC<NomineeProps> = (props) => {
             });
     }, [medias.length]);
 
+    const bannerAnimate = useTransition(medias.length, {
+        from: {
+            opacity: "0",
+        },
+        enter: {
+            opacity: "1",
+        },
+        leave: {
+            opacity: "0",
+        },
+
+        config: {
+            mass: 1,
+            duration: 1000,
+            // tension: 200,
+            // friction: 50,
+        },
+    });
+
     const top = useSpring({
         from: {
             width: "0%",
@@ -178,39 +197,44 @@ const Nominee: React.FC<NomineeProps> = (props) => {
             >
                 Your Nominees
             </animated.h1>
-            {/* <span ref={maxNomineesBannerRef}></span> */}
-            {
-                //@ts-ignore
-                medias.length === MAX_NOMINEE && (
-                    <div
-                        className="maxNomineesBanner"
-                        ref={maxNomineesBannerRef}
-                    >
-                        <h1 className="maxNomineesTitle">Your 2021 Winners</h1>
-                        <p className="maxNomineesDesc">
-                            You have picked your top 5 nominees
-                        </p>
-                        <div className="bannerBorder">
-                            <animated.span
-                                className="top"
-                                style={top}
-                            ></animated.span>
-                            <animated.span
-                                className="right"
-                                style={right}
-                            ></animated.span>
-                            <animated.span
-                                className="bottom"
-                                style={bottom}
-                            ></animated.span>
-                            <animated.span
-                                className="left"
-                                style={left}
-                            ></animated.span>
-                        </div>
-                    </div>
-                )
-            }
+            {bannerAnimate((animation, item) => {
+                return (
+                    //@ts-ignore
+                    item === MAX_NOMINEE && (
+                        <animated.div
+                            style={animation}
+                            className="maxNomineesBanner"
+                            ref={maxNomineesBannerRef}
+                        >
+                            <h1 className="maxNomineesTitle">
+                                Your 2021 Winners
+                            </h1>
+                            <p className="maxNomineesDesc">
+                                You have picked your top 5 nominees
+                            </p>
+                            <div className="bannerBorder">
+                                <animated.span
+                                    className="top"
+                                    style={top}
+                                ></animated.span>
+                                <animated.span
+                                    className="right"
+                                    style={right}
+                                ></animated.span>
+                                <animated.span
+                                    className="bottom"
+                                    style={bottom}
+                                ></animated.span>
+                                <animated.span
+                                    className="left"
+                                    style={left}
+                                ></animated.span>
+                            </div>
+                        </animated.div>
+                    )
+                );
+            })}
+
             <div className="nomineeMediaContainer">{renderMedias()}</div>
         </React.Fragment>
     );
