@@ -554,7 +554,6 @@ body {
 }
 .introBanner {
   position: relative;
-  width: 100vw;
 }
 @media screen and (min-width: 768px) {
   .introBanner {
@@ -575,8 +574,8 @@ body {
   width: 12rem;
   height: 12rem;
   position: absolute;
-  right: 5%;
-  bottom: -10%;
+  right: -2%;
+  bottom: -30%;
   animation: floatingIronMan 2s infinite alternate;
   display: none;
 }
@@ -591,7 +590,7 @@ body {
   .introBanner .ironManImage {
     width: 35rem;
     height: 35rem;
-    bottom: -10rem;
+    bottom: -7rem;
   }
 }
 .introBanner .modalFade {
@@ -607,6 +606,12 @@ body {
 
 .introBannerTextWrap {
   padding: 3rem 0;
+  width: 100%;
+}
+@media screen and (min-width: 520px) {
+  .introBannerTextWrap {
+    width: 75%;
+  }
 }
 .introBannerTextWrap .introBannerTitle {
   text-transform: uppercase;

@@ -145,8 +145,6 @@
 .introBanner {
     position: relative;
 
-    width: 100vw;
-
     @media screen and (min-width: $md_breakpoint) {
         min-height: 10rem;
     }
@@ -162,8 +160,8 @@
         width: 12rem;
         height: 12rem;
         position: absolute;
-        right: 5%;
-        bottom: -10%;
+        right: -2%;
+        bottom: -30%;
         animation: floatingIronMan 2s infinite alternate;
         display: none;
 
@@ -175,7 +173,7 @@
         @media screen and (min-width: $lg_breakpoint) {
             width: 35rem;
             height: 35rem;
-            bottom: -10rem;
+            bottom: -7rem;
         }
     }
 
@@ -200,7 +198,10 @@
 
 .introBannerTextWrap {
     padding: 3rem 0;
-
+    width: 100%;
+    @media screen and (min-width: $sm_breakpoint) {
+        width: 75%;
+    }
     .introBannerTitle {
         text-transform: uppercase;
         margin-bottom: 0.5rem;
@@ -209,6 +210,7 @@
         @media screen and (min-width: $sm_breakpoint) {
             font-size: 4rem;
         }
+
         @media screen and (min-width: $lg_breakpoint) {
             font-size: 6rem;
         }

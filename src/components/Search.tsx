@@ -4,15 +4,16 @@ import { AiOutlineSearch } from "react-icons/ai";
 import axios from "axios";
 import { Media } from "./Home";
 import NoImageFound from "../img/NoImageFound.jpg";
+import { useTransition, animated, useSpring, useTrail } from "react-spring";
 const MANY_ERROR = "Too many results.";
 const MOVIE_NOT_FOUND = "Movie not found!";
 interface SearchbarProps {
     addItem(item: Media): void;
-    media: any;
+    medias: any;
 }
 
 const Searchbar: React.FC<SearchbarProps> = (props) => {
-    let { addItem, media } = props;
+    let { addItem, medias } = props;
     //Detect click outside of component:
     // https://stackoverflow.com/questions/32553158/detect-click-outside-react-component
 
@@ -76,7 +77,7 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                 return <h1 className="noResultText">{MOVIE_NOT_FOUND}</h1>;
             else if (data instanceof Array) {
                 return data.map((mediaFromSearch: Media, index: number) => {
-                    let mediaInLocalStorage = media.find(
+                    let mediasInLocalStorage = medias.find(
                         (o: Media) => o.imdbID === mediaFromSearch.imdbID
                     );
                     return (
@@ -88,7 +89,7 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                                         : NoImageFound
                                 }
                                 className={
-                                    mediaInLocalStorage != null
+                                    mediasInLocalStorage != null
                                         ? "showNomineePosterBorder"
                                         : "hideNominePosterBorder"
                                 }
@@ -96,7 +97,7 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                             />
                             <div
                                 className={
-                                    mediaInLocalStorage != null
+                                    mediasInLocalStorage != null
                                         ? "nomineeMediaSelected"
                                         : "nomineeMediaUnselected"
                                 }
@@ -109,7 +110,7 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                             </div>
                             <button
                                 className={`nominateButton  ${
-                                    mediaInLocalStorage != null
+                                    mediasInLocalStorage != null
                                         ? "nominateButtonDisabled"
                                         : ""
                                 }
@@ -118,10 +119,10 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                                     addItem(mediaFromSearch);
                                 }}
                                 disabled={
-                                    mediaInLocalStorage != null ? true : false
+                                    mediasInLocalStorage != null ? true : false
                                 }
                             >
-                                {mediaInLocalStorage != null
+                                {mediasInLocalStorage != null
                                     ? "Nominated"
                                     : "Nominate"}
                             </button>
@@ -131,9 +132,28 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
             }
         }
     };
+    const translateTitle = useSpring({
+        from: {
+            transform: "translate3d(-10% , 0%, 0px)",
+        },
+        to: {
+            transform: "translate3d(0% , 0%, 0px)",
+        },
+
+        config: {
+            mass: 2,
+            friction: 40,
+            tension: 70,
+        },
+    });
     return (
         <React.Fragment>
-            <h1 className="searchAndNomineeTitle">Search</h1>
+            <animated.h1
+                style={translateTitle}
+                className="searchAndNomineeTitle"
+            >
+                Search
+            </animated.h1>
             <form className={"searchBarForm"}>
                 <input
                     autoFocus={false}
