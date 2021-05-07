@@ -105,10 +105,10 @@ const Home: React.FC<{}> = () => {
                     ></img>
                 </div>
 
-                <LazyLoad>
+                <LazyLoad once={true}>
                     <Nominees medias={medias} removeItem={removeItem} />
                 </LazyLoad>
-                <LazyLoad offset={10}>
+                <LazyLoad once={true} offset={10}>
                     <Search medias={medias} addItem={addItem} />
                 </LazyLoad>
             </div>

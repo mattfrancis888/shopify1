@@ -6,16 +6,25 @@ import HomeCarousel from "./HomeCarousel";
 import { useTransition, animated, useSpring, useTrail } from "react-spring";
 import useOnScreen from "../useOnScreen";
 import { Media } from "./Home";
-const MAX_NOMINEE = 5;
+export const MAX_NOMINEE = 5;
 interface NomineeProps {
     medias: any;
     removeItem(imdbID: String): void;
 }
 const Nominee: React.FC<NomineeProps> = (props) => {
+    let { medias } = props;
     const [startTrail, setStartTrail] = useState(false);
+    const maxNomineesBannerRef = useRef<any>(null);
     useEffect(() => {
         setStartTrail(true);
     }, []);
+    useEffect(() => {
+        if (medias.length === MAX_NOMINEE)
+            maxNomineesBannerRef.current?.scrollIntoView({
+                behavior: "smooth",
+            });
+    }, [medias.length]);
+
     const top = useSpring({
         from: {
             width: "0%",
@@ -80,7 +89,6 @@ const Nominee: React.FC<NomineeProps> = (props) => {
             // friction: 30,
         },
     });
-    let { medias } = props;
     const renderMedias = () => {
         if (medias) {
             if (medias.length > 0)
@@ -170,11 +178,14 @@ const Nominee: React.FC<NomineeProps> = (props) => {
             >
                 Your Nominees
             </animated.h1>
-
+            {/* <span ref={maxNomineesBannerRef}></span> */}
             {
                 //@ts-ignore
                 medias.length === MAX_NOMINEE && (
-                    <div className="maxNomineesBanner">
+                    <div
+                        className="maxNomineesBanner"
+                        ref={maxNomineesBannerRef}
+                    >
                         <h1 className="maxNomineesTitle">Your 2021 Winners</h1>
                         <p className="maxNomineesDesc">
                             You have picked your top 5 nominees

@@ -6,12 +6,11 @@ import { Media } from "./Home";
 import NoImageFound from "../img/NoImageFound.jpg";
 import { useTransition, animated, useSpring, useTrail } from "react-spring";
 import Loading from "./Loading";
+import { MAX_NOMINEE } from "./Nominees";
 const MANY_ERROR = "Too many results.";
 const MOVIE_NOT_FOUND = "Movie not found!";
 
 //TODO:
-//1. Font Sizes
-// 2. Handle key down
 //2. Network error
 
 interface SearchbarProps {
@@ -59,7 +58,8 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
         const delayDebounceFn = setTimeout(() => {
             // setStartTrail(false);
             // Send Axios request here
-            if (searchTerm != "") {
+            if (searchTerm === "") dataSet(null);
+            if (searchTerm !== "") {
                 setShowLoading(true);
                 setTimeout(() => {
                     fetchMyAPI();
@@ -69,21 +69,6 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
 
         return () => clearTimeout(delayDebounceFn);
     }, [searchTerm]);
-
-    const handleKeyDown = (event: any) => {
-        //https://stackoverflow.com/questions/31272207/to-call-onchange-event-after-pressing-enter-key
-        if (event.key === "Enter") {
-            event.preventDefault();
-
-            // if (searchTerm === "") {
-            //     history.push("/search");
-            // } else {
-            //     if (props.fetchGamesByKeyword)
-            //         props.fetchGamesByKeyword(searchTerm);
-            //     history.push(`/search?q=${searchTerm}`);
-            // }
-        }
-    };
 
     const trail = useTrail(data instanceof Array ? data.length : 0, {
         // marginTop: showPresentation ? `1.5rem` : `0px`,
@@ -159,8 +144,9 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                                 <p>{mediaFromSearch.Year}</p>
                             </div>
                             <button
-                                className={`nominateButton  ${
-                                    mediasInLocalStorage != null
+                                className={`nominateButton ${
+                                    mediasInLocalStorage != null ||
+                                    medias.length === MAX_NOMINEE
                                         ? "nominateButtonDisabled"
                                         : ""
                                 }
@@ -169,11 +155,16 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                                     addItem(mediaFromSearch);
                                 }}
                                 disabled={
-                                    mediasInLocalStorage != null ? true : false
+                                    mediasInLocalStorage != null ||
+                                    medias.length === MAX_NOMINEE
+                                        ? true
+                                        : false
                                 }
                             >
                                 {mediasInLocalStorage != null
                                     ? "Nominated"
+                                    : medias.length === MAX_NOMINEE
+                                    ? "Max Nominees Reached"
                                     : "Nominate"}
                             </button>
                         </animated.div>
@@ -215,8 +206,10 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                     type="search"
                     placeholder="Search titles"
                     name="search"
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    onKeyDown={handleKeyDown}
+                    onChange={(e) => {
+                        setSearchTerm(e.target.value);
+                    }}
+                    // onKeyDown={handleKeyDown}
                     autoComplete="off"
                     ref={searchBarInputRef}
                 />
