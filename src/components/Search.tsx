@@ -9,7 +9,7 @@ import Loading from "./Loading";
 import { MAX_NOMINEE } from "./Nominees";
 const MANY_ERROR = "Too many results.";
 const MOVIE_NOT_FOUND = "Movie not found!";
-
+export const INTERNET_ERROR = "Check your internet connection and try again.";
 //TODO:
 //2. Network error
 
@@ -48,7 +48,7 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                 })
                 .catch(function (error) {
                     // handle error
-
+                    dataSet(INTERNET_ERROR);
                     console.log("API ERROR:", error);
 
                     setShowLoading(false);
@@ -97,6 +97,8 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                 </h1>
             );
         else if (data) {
+            if (data === INTERNET_ERROR)
+                return <h1 className="noResultText">{INTERNET_ERROR}</h1>;
             if (data === MANY_ERROR)
                 return (
                     <h1 className="noResultText">

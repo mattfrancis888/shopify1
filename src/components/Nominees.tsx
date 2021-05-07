@@ -9,6 +9,24 @@ import { Media } from "./Home";
 import Modal from "./Modal";
 export const MAX_NOMINEE = 5;
 
+export const mockObj = {
+    Title: "The Avengers",
+    Year: "2012",
+    Rated: "PG-13",
+    Released: "04 May 2012",
+    Runtime: "143 min",
+    Genre: "Action, Adventure, Sci-Fi",
+    Director: "Joss Whedon",
+    Writer: "Joss Whedon (screenplay), Zak Penn (story), Joss Whedon (story)",
+    Actors: "Robert Downey Jr., Chris Evans, Mark Ruffalo, Chris Hemsworth",
+    Plot:
+        "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.",
+    Language: "English, Russian, Hindi",
+    Country: "USA",
+    Awards: "Nominated for 1 Oscar. Another 38 wins & 79 nominations.",
+    Poster:
+        "https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
+};
 export interface ModalProps {
     onDismiss(): void;
     title?: string;
@@ -28,6 +46,7 @@ const Nominee: React.FC<NomineeProps> = (props) => {
     const maxNomineesBannerRef = useRef<any>(null);
     const [showModal, setShowModal] = useState(false);
     const [firstRender, setFirstRender] = useState(true);
+    const [mockStore, setMockStore] = useState<any>(mockObj);
 
     const [showModalContent, setShowModalContent] = useState<any>(null);
 
@@ -62,7 +81,22 @@ const Nominee: React.FC<NomineeProps> = (props) => {
         setFirstRender(false);
         setShowModal(true);
         setShowModalContent({ ...clickedMedia });
-        // props.fetchMediaGenreAndCast(clickedMedia.media_id);
+        const LINK = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=${clickedMedia.imdbID}`;
+        axios
+            .get(LINK)
+            .then((response) => {
+                // handle success
+                //  setShowLoading(false);
+                console.log(response.data);
+                setMockStore(response.data);
+            })
+            .catch(function (error) {
+                // handle error
+                // dataSet(INTERNET_ERROR);
+                console.log("API ERROR:", error);
+
+                //setShowLoading(false);
+            });
     };
     const modalOnCancel = () => {
         setShowModal(false);
@@ -93,40 +127,15 @@ const Nominee: React.FC<NomineeProps> = (props) => {
             <div className="modalContentContainer" onLoad={() => {}}>
                 <div className="modalBannerContainer">
                     <div className="modalBannerImageWrap">
-                        <img src={showModalContent?.banner_image} alt=""></img>
+                        <img src={mockStore.Poster} alt=""></img>
 
                         <div className="modalFade"></div>
-                    </div>
-                    <div className="browseBannerTitleImageAndInfoWrap">
-                        <img
-                            src={showModalContent?.banner_title_image}
-                            alt=""
-                        ></img>
-                        <button
-                            className="modalWatchButton"
-                            onClick={() => {
-                                Number.isInteger(showModalContent?.media_id)
-                                    ? //@ts-ignore Small TS warning, too lazy to fix
-                                      addToWatching(showModalContent?.media_id)
-                                    : //   modalOnCancel();
-                                      alert(
-                                          "Trouble adding your movie to your watch list..."
-                                      );
-                                modalOnCancel();
-                            }}
-                        >
-                            Watch Now
-                        </button>
                     </div>
                 </div>
                 <div className="modalInfoWrap">
                     <div className="modalTextSection modalTextDateAndDescSection">
-                        <p className="modalMediaDate">
-                            {showModalContent?.media_date}
-                        </p>
-                        <p className="modalMediaDesc">
-                            {showModalContent?.media_description}
-                        </p>
+                        <p className="modalMediaDate">{mockStore.Year}</p>
+                        <p className="modalMediaDesc">{mockStore.Plot}</p>
                     </div>
                     <div className="modalTextSection modalTextCastAndGenreSection">
                         <div className="modalCastAndGenre"></div>
@@ -242,9 +251,6 @@ const Nominee: React.FC<NomineeProps> = (props) => {
                                     style={animation}
                                     key={index}
                                     className="nomineeMedia"
-                                    onClick={() => {
-                                        modalShow({});
-                                    }}
                                 >
                                     <img
                                         src={
@@ -255,6 +261,9 @@ const Nominee: React.FC<NomineeProps> = (props) => {
                                         onError={(e: any) => {
                                             e.target.src = NoImageFound; // some replacement image
                                             // e.target.style = 'padding: 8px; margin: 16px' // inline styles in html format
+                                        }}
+                                        onClick={() => {
+                                            modalShow(media);
                                         }}
                                         alt="poster"
                                     />
