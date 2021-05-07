@@ -26,43 +26,43 @@ const slides = [
             "https://occ-0-724-2433.1.nflxso.net/dnm/api/v6/tx1O544a9T7n8Z_G12qaboulQQE/AAAABTk2XN7GLRTLHV9pVLOUV7ZWdTgnQqitxdYryNH-ZwAkyO2vJRtwtlrgt1_iDdjZQrOJ0E_BN1NdSFtWQm4L7qmxDs2we2VVen4.webp?r=5b7",
         description: "2020 Winner",
         fallbackMobileImage:
-            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1617117304/blizzard/D2R_2021_Blizzard.comMobile_1536x1536_MB01.jpg",
+            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620418766/shopify1/Avengers-Infinity-War-Poster.jpg",
         fallbackImage:
-            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1617117361/blizzard/D2R_2021_Blizzard.comDesktop_2500x514_MB01.png",
+            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620418766/shopify1/Avengers-Infinity-War-Poster.jpg",
         fallbackLogo:
-            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1617117443/blizzard/D2R_DiabloResurrected_Logo_blizz.png",
+            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620418809/shopify1/AAAABTk2XN7GLRTLHV9pVLOUV7ZWdTgnQqitxdYryNH-ZwAkyO2vJRtwtlrgt1_iDdjZQrOJ0E_BN1NdSFtWQm4L7qmxDs2we2VVen4.webp",
     },
     {
         title: "Inception",
         mobileImage:
-            "https://swall.teahub.io/photos/small/325-3259154_schindlers-list-wallpapers-schindlers-list-poster.jpg",
+            "https://wallup.net/wp-content/uploads/2016/05/27/19927-Inception.jpg",
         image:
             "https://wallup.net/wp-content/uploads/2016/05/27/19927-Inception.jpg",
         logo:
             "https://occ-0-724-2433.1.nflxso.net/dnm/api/v6/tx1O544a9T7n8Z_G12qaboulQQE/AAAABSfHL5aFCPa5-J_HiLn4elONYPMesDMdp1JreFu3-SeoJdZ3-gRIOv9sQFPNB6EI-fAXl6NkgfUx5rXpn2iNzOAxrAzHBMu-7WU.webp?r=9b8",
         description: "2019 Winner",
         fallbackMobileImage:
-            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1616678520/blizzard/CODCW_S2_Keyart-Bnet-Home_Banner_Mobile_Home-1536x1536.jpg",
+            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620418871/shopify1/19927-Inception.jpg",
         fallbackImage:
-            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1616620251/blizzard/CODCW_S2_Keyart-Bnet-Home_Banner_Desktop_Home-2500x514.jpg",
+            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620418871/shopify1/19927-Inception.jpg",
         fallbackLogo:
-            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1616620270/blizzard/d20201211-017_CW_WZ_Logo_Lock_Up_1P_Stacked.png",
+            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620419044/shopify1/AAAABSfHL5aFCPa5-J_HiLn4elONYPMesDMdp1JreFu3-SeoJdZ3-gRIOv9sQFPNB6EI-fAXl6NkgfUx5rXpn2iNzOAxrAzHBMu-7WU.webp",
     },
     {
         title: "Interstellar",
         mobileImage:
-            "https://images.blz-contentstack.com/v3/assets/blte0bbc3c063f45866/blt0742cb14167fd273/6055055bc484333be943eb10/wow-bcc-beta-now-live-web-1536x1536-RD01.jpg",
+            "https://acrossthemargin.com/wp-content/uploads/2014/11/Interstellar-2014-Poster-Wallpaper.jpg",
         image:
             "https://acrossthemargin.com/wp-content/uploads/2014/11/Interstellar-2014-Poster-Wallpaper.jpg",
         logo:
             "https://occ-0-724-2433.1.nflxso.net/dnm/api/v6/tx1O544a9T7n8Z_G12qaboulQQE/AAAABanT-nmc6Y-uI4IRNbfyvUcC__k-xpELGiO8LllYxqiQbH8rINoEYCn7qP-TL8_I2lrpCpfVK9guqkpECOB1XCiTAnx_zuCYEew.webp?r=b34",
         description: "2018 Winner",
         fallbackMobileImage:
-            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1616678431/blizzard/wow-bcc-beta-now-live-web-1536x1536-RD01.jpg",
+            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620419103/shopify1/Interstellar-2014-Poster-Wallpaper.jpg",
         fallbackImage:
-            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1616620285/blizzard/wow-bcc-beta-now-live-web-2500x514-RD01.jpg",
+            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620419103/shopify1/Interstellar-2014-Poster-Wallpaper.jpg",
         fallbackLogo:
-            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1616620350/blizzard/WoW_C_BurningCrusade_Logo_DarkBG_MN03.png",
+            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620419491/shopify1/AAAABanT-nmc6Y-uI4IRNbfyvUcC__k-xpELGiO8LllYxqiQbH8rINoEYCn7qP-TL8_I2lrpCpfVK9guqkpECOB1XCiTAnx_zuCYEew.webp",
     },
 ];
 

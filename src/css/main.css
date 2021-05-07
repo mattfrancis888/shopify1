@@ -399,10 +399,12 @@ body {
 }
 
 .searchAndNomineeTitle {
-  font-size: 3rem;
+  font-size: 2.5rem;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
   font-weight: bold;
+  margin: 0;
+  margin-top: 1rem;
 }
 @media screen and (min-width: 520px) {
   .searchAndNomineeTitle {
@@ -412,7 +414,7 @@ body {
 
 .nomineeMediaContainer {
   position: relative;
-  margin-top: 5rem;
+  margin-top: 2.5rem;
   margin-bottom: 10rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -512,11 +514,16 @@ body {
 }
 .nomineeMediaTextWrap h1 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: bold;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+@media screen and (min-width: 520px) {
+  .nomineeMediaTextWrap h1 {
+    font-size: 1.4rem;
+  }
 }
 .nomineeMediaTextWrap p {
   color: #858585;
@@ -540,7 +547,7 @@ body {
 }
 .nominateButton:hover,
 .removeButton:hover {
-  border: 1px solid #3718cb;
+  border: 0.1rem solid #3718cb;
   transition: all 0.2s ease-in;
   background: #3718cb;
 }
@@ -639,11 +646,6 @@ body {
     font-size: 2rem;
   }
 }
-@media screen and (min-width: 992px) {
-  .introBannerTextWrap .introBannerTitleDesc {
-    font-size: 2.5rem;
-  }
-}
 
 .searchBarForm {
   background: #3718cb;
@@ -655,7 +657,7 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.3);
   box-shadow: 1px 1px 0px rgba(255, 255, 255, 0.2);
   color: white;
-  padding: 0.25rem;
+  padding: 0.75rem;
   padding-left: 1.5rem;
   margin-top: 1rem;
   margin-right: auto;
@@ -673,7 +675,12 @@ body {
   }
 }
 .searchBarForm input[type=search] {
-  font-size: 2rem;
+  font-size: 1.2rem;
+}
+@media screen and (min-width: 520px) {
+  .searchBarForm input[type=search] {
+    font-size: 2rem;
+  }
 }
 
 .searchBarIcons {

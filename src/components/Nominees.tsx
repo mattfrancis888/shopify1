@@ -168,7 +168,7 @@ const Nominee: React.FC<NomineeProps> = (props) => {
                 style={translateTitle}
                 className="searchAndNomineeTitle"
             >
-                Nominees
+                Your Nominees
             </animated.h1>
 
             {

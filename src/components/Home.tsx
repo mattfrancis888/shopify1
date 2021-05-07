@@ -94,7 +94,7 @@ const Home: React.FC<{}> = () => {
                     >
                         <h1 className="introBannerTitle">2021 Nominees</h1>
                         <p className="introBannerTitleDesc">
-                            Search titles on OMDB and nominate your top 5.
+                            Search titles on OMDB and nominate your top 5
                         </p>
                     </animated.div>
                     {/* <div className="modalFade"></div> */}

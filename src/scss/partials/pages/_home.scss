@@ -5,18 +5,20 @@
     }
 }
 .searchAndNomineeTitle {
-    font-size: 3rem;
+    font-size: 2.5rem;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
     font-weight: bold;
     @media screen and (min-width: $sm_breakpoint) {
         font-size: 5rem;
     }
+    margin: 0;
+    margin-top: 1rem;
 }
 
 .nomineeMediaContainer {
     position: relative;
-    margin-top: 5rem;
+    margin-top: 2.5rem;
     margin-bottom: 10rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -101,11 +103,14 @@
     margin-top: 1.5rem;
     h1 {
         margin: 0;
-        font-size: 2rem;
+        font-size: 1rem;
         font-weight: bold;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        @media screen and (min-width: $sm_breakpoint) {
+            font-size: 1.4rem;
+        }
     }
     p {
         color: #858585;
@@ -128,7 +133,7 @@
     padding: 2rem;
     border: 1px solid white;
     &:hover {
-        border: 1px solid $light-blue;
+        border: 0.1rem solid $light-blue;
         transition: all 0.2s ease-in;
         background: $light-blue;
     }
@@ -222,9 +227,6 @@
         font-size: 1.3rem;
         @media screen and (min-width: $md_breakpoint) {
             font-size: 2rem;
-        }
-        @media screen and (min-width: $lg_breakpoint) {
-            font-size: 2.5rem;
         }
     }
 }
