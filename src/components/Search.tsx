@@ -5,8 +5,10 @@ import axios from "axios";
 import { Media } from "./Home";
 import NoImageFound from "../img/NoImageFound.jpg";
 import { useTransition, animated, useSpring, useTrail } from "react-spring";
+import Loading from "./Loading";
 const MANY_ERROR = "Too many results.";
 const MOVIE_NOT_FOUND = "Movie not found!";
+
 interface SearchbarProps {
     addItem(item: Media): void;
     medias: any;
@@ -20,13 +22,11 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
     const searchBarInputRef = useRef<HTMLInputElement>(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [data, dataSet] = useState<any>(null);
-    const [startTrail, setStartTrail] = useState(false);
-    useEffect(() => {
-        setStartTrail(true);
-    }, []);
+
+    const [showLoading, setShowLoading] = useState(false);
+
     useEffect(() => {
         async function fetchMyAPI() {
-            setStartTrail(false);
             const LINK = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${searchTerm}`;
             axios
                 .get(LINK)
@@ -39,19 +39,25 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                         dataSet(MANY_ERROR);
                     else if (response.data.Error === MOVIE_NOT_FOUND)
                         dataSet(MOVIE_NOT_FOUND);
-                    setStartTrail(true);
+
+                    setShowLoading(false);
                 })
                 .catch(function (error) {
                     // handle error
 
                     console.log("API ERROR:", error);
-                    setStartTrail(true);
+
+                    setShowLoading(false);
                 });
         }
 
         const delayDebounceFn = setTimeout(() => {
+            // setStartTrail(false);
             // Send Axios request here
-            fetchMyAPI();
+            setShowLoading(true);
+            setTimeout(() => {
+                fetchMyAPI();
+            }, 300);
         }, 550);
 
         return () => clearTimeout(delayDebounceFn);
@@ -74,22 +80,25 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
 
     const trail = useTrail(data instanceof Array ? data.length : 0, {
         // marginTop: showPresentation ? `1.5rem` : `0px`,
-        transform: startTrail
+        transform: !showLoading
             ? `translate3d(0px,0%,0px)`
             : `translate3d(0px,20%,0px)`,
 
-        opacity: startTrail ? 1 : 0,
+        opacity: !showLoading ? 1 : 0,
 
         config: {
-            duration: 2000,
-            // mass: 1,
-            // tension: 225,
-            // friction: 50,
+            // duration: 2000,
+            mass: 1,
+            tension: 255,
+            friction: 25,
         },
     });
 
     const renderSearchPreview = () => {
-        if (data) {
+        if (showLoading) {
+            //Show loading
+            return <Loading />;
+        } else if (data) {
             if (data === MANY_ERROR)
                 return (
                     <h1 className="noResultText">
