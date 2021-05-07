@@ -43,7 +43,8 @@
     height: 100%;
     .pictureImageWrap {
         position: relative;
-        width: 100%;
+        width: 105%;
+        left: -2%;
         height: 100%;
         img {
             width: 100%;
@@ -102,8 +103,14 @@
 
 .slideImageLogo {
     width: 18rem;
-    @media screen and (min-width: $md_breakpoint) {
+    @media screen and (min-width: $sm_breakpoint) {
         width: 26rem;
+    }
+    @media screen and (min-width: $md_breakpoint) {
+        width: 36rem;
+    }
+    @media screen and (min-width: $lg_breakpoint) {
+        width: 56rem;
     }
 }
 .slideDesc {

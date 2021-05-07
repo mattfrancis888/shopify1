@@ -17,14 +17,14 @@ const timer = 5000;
 
 const slides = [
     {
-        title: "Diablo",
+        title: "Avengers",
         mobileImage:
-            "https://images.blz-contentstack.com/v3/assets/blte0bbc3c063f45866/bltd193570a0665fcd5/6025ea3fee3eea3d58382719/D2R_2021_Blizzard.comMobile_1536x1536_MB01.jpg",
+            "https://allears.net/wp-content/uploads/2020/10/Avengers-Infinity-War-Poster.jpg",
         image:
             "https://allears.net/wp-content/uploads/2020/10/Avengers-Infinity-War-Poster.jpg",
         logo:
-            "https://images.blz-contentstack.com/v3/assets/blte0bbc3c063f45866/bltd8a7795d91122b89/6025e878c484333be943db63/D2R_DiabloResurrected_Logo_blizz.png?format=png",
-        description: "2021 Nominees",
+            "https://occ-0-724-2433.1.nflxso.net/dnm/api/v6/tx1O544a9T7n8Z_G12qaboulQQE/AAAABTk2XN7GLRTLHV9pVLOUV7ZWdTgnQqitxdYryNH-ZwAkyO2vJRtwtlrgt1_iDdjZQrOJ0E_BN1NdSFtWQm4L7qmxDs2we2VVen4.webp?r=5b7",
+        description: "2020 Winner",
         fallbackMobileImage:
             "https://res.cloudinary.com/du8n2aa4p/image/upload/v1617117304/blizzard/D2R_2021_Blizzard.comMobile_1536x1536_MB01.jpg",
         fallbackImage:
@@ -33,14 +33,14 @@ const slides = [
             "https://res.cloudinary.com/du8n2aa4p/image/upload/v1617117443/blizzard/D2R_DiabloResurrected_Logo_blizz.png",
     },
     {
-        title: "Warzone",
+        title: "Inception",
         mobileImage:
-            "https://images.blz-contentstack.com/v3/assets/blte0bbc3c063f45866/blt72a65c1ea9b4e021/6036f901ee3eea3d58382eb1/CODCW_S2_Keyart-Bnet-Home_Banner_Mobile_Home-1536x1536.webp?auto=webp&format=pjpg",
+            "https://swall.teahub.io/photos/small/325-3259154_schindlers-list-wallpapers-schindlers-list-poster.jpg",
         image:
-            "https://images.blz-contentstack.com/v3/assets/blte0bbc3c063f45866/blt430768244603486e/6036f8ed0b1d853be8ad56fc/CODCW_S2_Keyart-Bnet-Home_Banner_Desktop_Home-2500x514.webp?auto=webp&format=pjpg",
+            "https://wallup.net/wp-content/uploads/2016/05/27/19927-Inception.jpg",
         logo:
-            "https://images.blz-contentstack.com/v3/assets/blte0bbc3c063f45866/blt99a6a6b625f0456f/5fd8228f89d9d54751de540d/d20201211-017_CW_WZ_Logo_Lock_Up_1P_Stacked.png?format=png",
-        description: "Season 2  now live",
+            "https://occ-0-724-2433.1.nflxso.net/dnm/api/v6/tx1O544a9T7n8Z_G12qaboulQQE/AAAABSfHL5aFCPa5-J_HiLn4elONYPMesDMdp1JreFu3-SeoJdZ3-gRIOv9sQFPNB6EI-fAXl6NkgfUx5rXpn2iNzOAxrAzHBMu-7WU.webp?r=9b8",
+        description: "2019 Winner",
         fallbackMobileImage:
             "https://res.cloudinary.com/du8n2aa4p/image/upload/v1616678520/blizzard/CODCW_S2_Keyart-Bnet-Home_Banner_Mobile_Home-1536x1536.jpg",
         fallbackImage:
@@ -49,14 +49,14 @@ const slides = [
             "https://res.cloudinary.com/du8n2aa4p/image/upload/v1616620270/blizzard/d20201211-017_CW_WZ_Logo_Lock_Up_1P_Stacked.png",
     },
     {
-        title: "WOW",
+        title: "Interstellar",
         mobileImage:
             "https://images.blz-contentstack.com/v3/assets/blte0bbc3c063f45866/blt0742cb14167fd273/6055055bc484333be943eb10/wow-bcc-beta-now-live-web-1536x1536-RD01.jpg",
         image:
-            "https://images.blz-contentstack.com/v3/assets/blte0bbc3c063f45866/bltc1312ef8fbc2b4c6/60550544c6713d4e7a4d554c/wow-bcc-beta-now-live-web-2500x514-RD01.jpg",
+            "https://acrossthemargin.com/wp-content/uploads/2014/11/Interstellar-2014-Poster-Wallpaper.jpg",
         logo:
-            "https://images.blz-contentstack.com/v3/assets/blte0bbc3c063f45866/blta82b68446e5cb096/6025e7a202ccfb4d0f671c0b/WoW_C_BurningCrusade_Logo_DarkBG_MN03.png?format=png",
-        description: "Beta is now live",
+            "https://occ-0-724-2433.1.nflxso.net/dnm/api/v6/tx1O544a9T7n8Z_G12qaboulQQE/AAAABanT-nmc6Y-uI4IRNbfyvUcC__k-xpELGiO8LllYxqiQbH8rINoEYCn7qP-TL8_I2lrpCpfVK9guqkpECOB1XCiTAnx_zuCYEew.webp?r=b34",
+        description: "2018 Winner",
         fallbackMobileImage:
             "https://res.cloudinary.com/du8n2aa4p/image/upload/v1616678431/blizzard/wow-bcc-beta-now-live-web-1536x1536-RD01.jpg",
         fallbackImage:

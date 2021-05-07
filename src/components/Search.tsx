@@ -84,7 +84,7 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                             <img
                                 src={
                                     mediaFromSearch.Poster !== "N/A"
-                                        ? media.Poster
+                                        ? mediaFromSearch.Poster
                                         : NoImageFound
                                 }
                                 className={
