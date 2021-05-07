@@ -434,6 +434,7 @@ body {
 }
 
 .noResultText {
+  text-transform: uppercase;
   position: absolute;
   top: -2rem;
 }
@@ -798,6 +799,18 @@ body {
 .nominateButtonDisabled:hover {
   background: red;
   border: 1px solid red;
+}
+
+.searchForTitle {
+  font-size: 1.3rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+@media screen and (min-width: 768px) {
+  .searchForTitle {
+    font-size: 2rem;
+  }
 }
 
 .sliderAndDotWrap {

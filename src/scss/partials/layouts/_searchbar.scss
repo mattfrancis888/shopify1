@@ -146,3 +146,13 @@
         border: 1px solid red;
     }
 }
+
+.searchForTitle {
+    font-size: 1.3rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    @media screen and (min-width: $md_breakpoint) {
+        font-size: 2rem;
+    }
+}

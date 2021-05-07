@@ -9,6 +9,11 @@ import Loading from "./Loading";
 const MANY_ERROR = "Too many results.";
 const MOVIE_NOT_FOUND = "Movie not found!";
 
+//TODO:
+//1. Font Sizes
+// 2. Handle key down
+//2. Network error
+
 interface SearchbarProps {
     addItem(item: Media): void;
     medias: any;
@@ -54,10 +59,12 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
         const delayDebounceFn = setTimeout(() => {
             // setStartTrail(false);
             // Send Axios request here
-            setShowLoading(true);
-            setTimeout(() => {
-                fetchMyAPI();
-            }, 300);
+            if (searchTerm != "") {
+                setShowLoading(true);
+                setTimeout(() => {
+                    fetchMyAPI();
+                }, 300);
+            }
         }, 550);
 
         return () => clearTimeout(delayDebounceFn);
@@ -98,7 +105,13 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
         if (showLoading) {
             //Show loading
             return <Loading />;
-        } else if (data) {
+        } else if (searchTerm === "")
+            return (
+                <h1 className="noResultText">
+                    Enter a keyword in the search form
+                </h1>
+            );
+        else if (data) {
             if (data === MANY_ERROR)
                 return (
                     <h1 className="noResultText">
@@ -190,6 +203,9 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                 className="searchAndNomineeTitle"
             >
                 Search
+            </animated.h1>
+            <animated.h1 style={translateTitle} className="searchForTitle">
+                {`Searching for: '${searchTerm}'`}
             </animated.h1>
             <form className={"searchBarForm"}>
                 <input
