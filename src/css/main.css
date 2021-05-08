@@ -1343,4 +1343,40 @@ body {
   }
 }
 
+nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  height: 6.5rem;
+  background: transparent;
+  padding: 1.5rem 4rem;
+  background: black;
+}
+@media screen and (min-width: 520px) {
+  nav {
+    padding: 1.5rem 4.5rem;
+  }
+}
+
+.headerTextsWrap {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  margin-left: 3rem;
+}
+.headerTextsWrap h1 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 0.1rem;
+  margin-right: 5rem;
+}
+
+.logo {
+  height: 100%;
+  object-fit: contain;
+}
+
 /*# sourceMappingURL=main.css.map */
