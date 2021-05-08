@@ -155,7 +155,8 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                                             : ""
                                     }
                                 `}
-                                    onClick={() => {
+                                    onClick={(e) => {
+                                        e.stopPropagation();
                                         addItem(mediaFromSearch);
                                     }}
                                     disabled={

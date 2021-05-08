@@ -21,10 +21,11 @@ const Nominee: React.FC<NomineeProps> = (props) => {
         setStartTrail(true);
     }, []);
     useEffect(() => {
-        if (medias.length === MAX_NOMINEE)
+        if (medias.length === MAX_NOMINEE) {
             maxNomineesBannerRef.current?.scrollIntoView({
                 behavior: "smooth",
             });
+        }
     }, [medias.length]);
 
     const bannerAnimate = useTransition(medias.length, {
@@ -34,9 +35,10 @@ const Nominee: React.FC<NomineeProps> = (props) => {
         enter: {
             opacity: "1",
         },
-        leave: {
-            opacity: "0",
-        },
+
+        // leave: {
+        //     transform: "scaleY(0)",
+        // },
 
         config: {
             mass: 1,
@@ -53,7 +55,7 @@ const Nominee: React.FC<NomineeProps> = (props) => {
         to: {
             width: "100%",
         },
-
+        //width: !startBorder ? "0%" : "100%",
         config: {
             duration: 1000,
             // mass: 1,
@@ -69,6 +71,7 @@ const Nominee: React.FC<NomineeProps> = (props) => {
         to: {
             height: "100%",
         },
+        //  height: !startBorder ? "0%" : "100%",
 
         delay: 1000,
         config: {
@@ -86,6 +89,8 @@ const Nominee: React.FC<NomineeProps> = (props) => {
         to: {
             transform: "scaleX(1)",
         },
+        // transform: !startBorder ? "scaleX(0)" : "scaleX(1)",
+
         delay: 2000,
         config: {
             duration: 1000,
@@ -102,6 +107,7 @@ const Nominee: React.FC<NomineeProps> = (props) => {
         to: {
             transform: "scaleY(1)",
         },
+        // transform: !startBorder ? "scaleY(0)" : "scaleY(1)",
         delay: 3000,
         config: {
             duration: 1000,
@@ -119,7 +125,11 @@ const Nominee: React.FC<NomineeProps> = (props) => {
                         {trail.map((animation, index: number) => {
                             let media = medias[index];
                             return (
-                                <animated.div style={animation} key={index}>
+                                <animated.div
+                                    className="nomineeMedia"
+                                    style={animation}
+                                    key={index}
+                                >
                                     <Media media={media}>
                                         <img
                                             src={
@@ -139,9 +149,10 @@ const Nominee: React.FC<NomineeProps> = (props) => {
                                         </div>
                                         <button
                                             className="removeButton"
-                                            onClick={() =>
-                                                props.removeItem(media.imdbID)
-                                            }
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                props.removeItem(media.imdbID);
+                                            }}
                                         >
                                             Remove
                                         </button>
