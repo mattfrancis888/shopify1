@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Search from "./Search";
 import Nominees from "./Nominees";
-import NoImageFound from "../img/NoImageFound.jpg";
+import IronMan from "../img/IronMan.png";
+
 import HomeCarousel from "./HomeCarousel";
 import { useTransition, animated, useSpring, useTrail } from "react-spring";
 import useOnScreen from "../useOnScreen";
@@ -98,11 +99,7 @@ const Home: React.FC<{}> = () => {
                         </p>
                     </animated.div>
                     {/* <div className="modalFade"></div> */}
-                    <img
-                        className="ironManImage"
-                        alt=""
-                        src="https://purepng.com/public/uploads/large/purepng.com-ironmanironmansuperheromarvel-comicscharactermarvel-studiosrobert-downey-jrtony-stark-1701528612052n7gmm.png"
-                    ></img>
+                    <img className="ironManImage" alt="" src={IronMan}></img>
                 </div>
 
                 <LazyLoad once={true}>

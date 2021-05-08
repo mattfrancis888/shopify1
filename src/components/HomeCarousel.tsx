@@ -35,32 +35,32 @@ const slides = [
     {
         title: "Inception",
         mobileImage:
-            "https://wallup.net/wp-content/uploads/2016/05/27/19927-Inception.jpg",
+            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620495252/shopify1/rsz_19927-inception.jpg",
         image:
-            "https://wallup.net/wp-content/uploads/2016/05/27/19927-Inception.jpg",
+            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620495252/shopify1/rsz_19927-inception.jpg",
         logo:
             "https://occ-0-724-2433.1.nflxso.net/dnm/api/v6/tx1O544a9T7n8Z_G12qaboulQQE/AAAABSfHL5aFCPa5-J_HiLn4elONYPMesDMdp1JreFu3-SeoJdZ3-gRIOv9sQFPNB6EI-fAXl6NkgfUx5rXpn2iNzOAxrAzHBMu-7WU.webp?r=9b8",
         description: "2019 Winner",
         fallbackMobileImage:
-            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620418871/shopify1/19927-Inception.jpg",
+            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620495252/shopify1/rsz_19927-inception.jpg",
         fallbackImage:
-            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620418871/shopify1/19927-Inception.jpg",
+            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620495252/shopify1/rsz_19927-inception.jpg",
         fallbackLogo:
             "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620419044/shopify1/AAAABSfHL5aFCPa5-J_HiLn4elONYPMesDMdp1JreFu3-SeoJdZ3-gRIOv9sQFPNB6EI-fAXl6NkgfUx5rXpn2iNzOAxrAzHBMu-7WU.webp",
     },
     {
         title: "Interstellar",
         mobileImage:
-            "https://acrossthemargin.com/wp-content/uploads/2014/11/Interstellar-2014-Poster-Wallpaper.jpg",
+            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620495338/shopify1/rsz_interstellar-2014-poster-wallpaper.jpg",
         image:
-            "https://acrossthemargin.com/wp-content/uploads/2014/11/Interstellar-2014-Poster-Wallpaper.jpg",
+            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620495338/shopify1/rsz_interstellar-2014-poster-wallpaper.jpg",
         logo:
             "https://occ-0-724-2433.1.nflxso.net/dnm/api/v6/tx1O544a9T7n8Z_G12qaboulQQE/AAAABanT-nmc6Y-uI4IRNbfyvUcC__k-xpELGiO8LllYxqiQbH8rINoEYCn7qP-TL8_I2lrpCpfVK9guqkpECOB1XCiTAnx_zuCYEew.webp?r=b34",
         description: "2018 Winner",
         fallbackMobileImage:
-            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620419103/shopify1/Interstellar-2014-Poster-Wallpaper.jpg",
+            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620495338/shopify1/rsz_interstellar-2014-poster-wallpaper.jpg",
         fallbackImage:
-            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620419103/shopify1/Interstellar-2014-Poster-Wallpaper.jpg",
+            "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620495338/shopify1/rsz_interstellar-2014-poster-wallpaper.jpg",
         fallbackLogo:
             "https://res.cloudinary.com/du8n2aa4p/image/upload/v1620419491/shopify1/AAAABanT-nmc6Y-uI4IRNbfyvUcC__k-xpELGiO8LllYxqiQbH8rINoEYCn7qP-TL8_I2lrpCpfVK9guqkpECOB1XCiTAnx_zuCYEew.webp",
     },
