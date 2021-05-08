@@ -38,11 +38,21 @@ interface MediaProps {
 
     children: any;
 }
+
+interface ModalDataType {
+    Poster: string;
+    Title: string;
+    Type: string;
+    Year: string;
+    Genre: string;
+    Plot: string;
+    Actors: string;
+}
 const Media: React.FC<MediaProps> = (props) => {
     let { media } = props;
     const [showModal, setShowModal] = useState(false);
     const [firstRender, setFirstRender] = useState(true);
-    const [modalData, setModalData] = useState<any>({});
+    const [modalData, setModalData] = useState<ModalDataType | null>(null);
 
     const transition = useTransition(showModal, {
         from: {
@@ -117,29 +127,32 @@ const Media: React.FC<MediaProps> = (props) => {
     };
 
     const renderModalContent = () => {
-        return (
-            <div className="modalContentContainer" onLoad={() => {}}>
-                <div className="modalBannerContainer">
-                    <div className="modalBannerImageWrap">
-                        <img src={modalData.Poster} alt=""></img>
+        if (modalData)
+            return (
+                <div className="modalContentContainer" onLoad={() => {}}>
+                    <div className="modalBannerContainer">
+                        <div className="modalBannerImageWrap">
+                            <img src={modalData.Poster} alt=""></img>
 
-                        <div className="modalFade"></div>
+                            <div className="modalFade"></div>
+                        </div>
+                    </div>
+                    <div className="modalInfoWrap">
+                        <div className="modalTextSection modalTextDateAndDescSection">
+                            <h1 className="modalMediaTitle">
+                                {modalData.Title}
+                            </h1>
+                            <h3 className="modalMediaType">{modalData.Type}</h3>
+                            <p className="modalMediaDescOther">{`Released: ${modalData.Year}`}</p>
+                            <p className="modalMediaDescOther">{`Genre: ${modalData.Genre}`}</p>
+                            <p className="modalMediaPlot">{modalData.Plot}</p>
+                            <p className="modalMediaDescOther">
+                                {`Cast: ${modalData.Actors}`}
+                            </p>
+                        </div>
                     </div>
                 </div>
-                <div className="modalInfoWrap">
-                    <div className="modalTextSection modalTextDateAndDescSection">
-                        <h1 className="modalMediaTitle">{modalData.Title}</h1>
-                        <h3 className="modalMediaType">{modalData.Type}</h3>
-                        <p className="modalMediaDescOther">{`Released: ${modalData.Year}`}</p>
-                        <p className="modalMediaDescOther">{`Genre: ${modalData.Genre}`}</p>
-                        <p className="modalMediaPlot">{modalData.Plot}</p>
-                        <p className="modalMediaDescOther">
-                            {`Cast: ${modalData.Actors}`}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        );
+            );
     };
 
     return (
