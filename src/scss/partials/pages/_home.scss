@@ -1,6 +1,237 @@
-.carouselAndSvgWrap {
-    width: 100%;
-    height: 100%;
+.homeContentSection {
+    padding: 0rem 3rem;
+    @media screen and (min-width: $md_breakpoint) {
+        padding: 0rem 5rem;
+    }
+}
+.searchAndNomineeTitle {
+    font-size: 2.5rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    @media screen and (min-width: $sm_breakpoint) {
+        font-size: 5rem;
+    }
+    margin: 0;
+    margin-top: 1rem;
+}
+
+.nomineeMediaContainer {
+    min-height: 10rem;
     position: relative;
+    margin-top: 2.5rem;
+    margin-bottom: 10rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    row-gap: 5rem;
+    @media screen and (min-width: $sm_breakpoint) {
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 1.5rem;
+        row-gap: 5rem;
+    }
+    @media screen and (min-width: $xl_breakpoint) {
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 1.5rem;
+    }
+}
+.noResultText {
+    text-transform: uppercase;
+    position: absolute;
+    top: -2rem;
+}
+
+.nomineeMediaSelected {
+    display: block;
+    position: absolute;
     overflow: hidden;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(90deg);
+
+    h1 {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        margin: 1.5rem 3rem;
+        @media screen and (min-width: $lg_breakpoint) {
+            font-size: 1.4rem;
+            margin: 2.5rem 4rem;
+        }
+        &:after {
+            content: "";
+            left: -2rem;
+            top: 0.8rem;
+            @media screen and (min-width: $lg_breakpoint) {
+                top: 1.2rem;
+            }
+            width: 100%;
+            height: 100%;
+            transform: skew(-35deg);
+            position: absolute;
+            z-index: -1;
+            background: red;
+        }
+    }
+}
+
+.nomineeMediaUnselected {
+    display: none;
+}
+.nomineeMedia {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    .showNomineePosterBorder {
+        border: 1rem solid red;
+    }
+    .hideNominePosterBorder {
+        border: none;
+    }
+    img {
+        width: 100%;
+        height: 22rem;
+        object-fit: cover;
+        @media screen and (min-width: $sm_breakpoint) {
+            height: 35rem;
+        }
+        @media screen and (min-width: $lg_breakpoint) {
+            height: 45rem;
+        }
+        transition: all 0.5s ease;
+        &:hover {
+            transition: all 0.5s ease;
+            object-position: 70% 70%;
+        }
+    }
+}
+.nomineeMediaTextWrap {
+    text-transform: uppercase;
+    margin-top: 1.5rem;
+    h1 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        @media screen and (min-width: $sm_breakpoint) {
+            font-size: 1.4rem;
+        }
+    }
+    p {
+        color: #858585;
+        font-weight: bold;
+        margin: 0;
+        margin-top: 0.5rem;
+        font-size: 1.2rem;
+        letter-spacing: 0.1rem;
+    }
+}
+
+.nominateButton,
+.removeButton {
+    margin-top: 2rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    background: transparent;
+    border-radius: 0.25rem;
+    color: white;
+    padding: 2rem;
+    border: 1px solid white;
+    &:hover {
+        border: 0.1rem solid $light-blue;
+        transition: all 0.2s ease-in;
+        background: $light-blue;
+    }
+}
+
+@keyframes floatingIronMan {
+    from {
+        transform: translate3d(0px, 5%, 0px);
+    }
+    to {
+        transform: translate3d(0px, 0px, 0px);
+    }
+}
+
+.introBanner {
+    position: relative;
+    @media screen and (min-width: $md_breakpoint) {
+        min-height: 10rem;
+    }
+    @media screen and (min-width: $lg_breakpoint) {
+        min-height: 10rem;
+    }
+    .introBannerImage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .ironManImage {
+        width: 12rem;
+        height: 12rem;
+        position: absolute;
+        right: -2%;
+        bottom: -30%;
+        animation: floatingIronMan 2s infinite alternate;
+        display: none;
+
+        @media screen and (min-width: $md_breakpoint) {
+            width: 25rem;
+            height: 25rem;
+            display: block;
+        }
+        @media screen and (min-width: $lg_breakpoint) {
+            width: 35rem;
+            height: 35rem;
+            bottom: -7rem;
+        }
+    }
+
+    .modalFade {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        // background: rgba(0, 0, 0, 0.4);
+        background-color: #02021e;
+        opacity: 0.4;
+        background-image: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.8) 0,
+            rgba(0, 0, 0, 0) 40%,
+            rgba(0, 0, 0, 0) 75%,
+            rgba(0, 0, 0, 0.8) 100%
+        );
+    }
+}
+
+.introBannerTextWrap {
+    padding: 3rem 0;
+    width: 100%;
+    @media screen and (min-width: $sm_breakpoint) {
+        width: 75%;
+    }
+    .introBannerTitle {
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+        font-size: 3rem;
+
+        @media screen and (min-width: $sm_breakpoint) {
+            font-size: 4rem;
+        }
+
+        @media screen and (min-width: $lg_breakpoint) {
+            font-size: 6rem;
+        }
+    }
+    .introBannerTitleDesc {
+        margin: 0;
+        text-transform: uppercase;
+        font-size: 1.3rem;
+        @media screen and (min-width: $md_breakpoint) {
+            font-size: 2rem;
+        }
+    }
 }

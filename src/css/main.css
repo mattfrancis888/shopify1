@@ -341,12 +341,9 @@ template,
  */
 body {
   margin: 0;
-  background: linear-gradient(to bottom, #072142, #061c37, #07182b, #061220, #020b16);
+  background: #02021e;
   color: white;
-  background-repeat: no-repeat;
-  background-size: cover;
   overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 a {
@@ -361,7 +358,7 @@ html {
 
 body {
   /*Make default font-size bigger. If default font-size is 16px; 1.6 rem = 16 px*/
-  font: 1.1rem "Futura Medium", helvetica, arial, sans-serif;
+  font: 1.1rem "Square", helvetica, arial, sans-serif;
 }
 
 @font-face {
@@ -387,6 +384,999 @@ body {
 @font-face {
   font-family: "Abril Fat";
   src: url(../fonts/AbrilFatface-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Square";
+  src: url(../fonts/Square.woff2) format("woff2");
+}
+.homeContentSection {
+  padding: 0rem 3rem;
+}
+@media screen and (min-width: 768px) {
+  .homeContentSection {
+    padding: 0rem 5rem;
+  }
+}
+
+.searchAndNomineeTitle {
+  font-size: 2.5rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 0;
+  margin-top: 1rem;
+}
+@media screen and (min-width: 520px) {
+  .searchAndNomineeTitle {
+    font-size: 5rem;
+  }
+}
+
+.nomineeMediaContainer {
+  min-height: 10rem;
+  position: relative;
+  margin-top: 2.5rem;
+  margin-bottom: 10rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+  row-gap: 5rem;
+}
+@media screen and (min-width: 520px) {
+  .nomineeMediaContainer {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1.5rem;
+    row-gap: 5rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .nomineeMediaContainer {
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 1.5rem;
+  }
+}
+
+.noResultText {
+  text-transform: uppercase;
+  position: absolute;
+  top: -2rem;
+}
+
+.nomineeMediaSelected {
+  display: block;
+  position: absolute;
+  overflow: hidden;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%) rotate(90deg);
+}
+.nomineeMediaSelected h1 {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  margin: 1.5rem 3rem;
+}
+@media screen and (min-width: 992px) {
+  .nomineeMediaSelected h1 {
+    font-size: 1.4rem;
+    margin: 2.5rem 4rem;
+  }
+}
+.nomineeMediaSelected h1:after {
+  content: "";
+  left: -2rem;
+  top: 0.8rem;
+  width: 100%;
+  height: 100%;
+  transform: skew(-35deg);
+  position: absolute;
+  z-index: -1;
+  background: red;
+}
+@media screen and (min-width: 992px) {
+  .nomineeMediaSelected h1:after {
+    top: 1.2rem;
+  }
+}
+
+.nomineeMediaUnselected {
+  display: none;
+}
+
+.nomineeMedia {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+.nomineeMedia .showNomineePosterBorder {
+  border: 1rem solid red;
+}
+.nomineeMedia .hideNominePosterBorder {
+  border: none;
+}
+.nomineeMedia img {
+  width: 100%;
+  height: 22rem;
+  object-fit: cover;
+  transition: all 0.5s ease;
+}
+@media screen and (min-width: 520px) {
+  .nomineeMedia img {
+    height: 35rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .nomineeMedia img {
+    height: 45rem;
+  }
+}
+.nomineeMedia img:hover {
+  transition: all 0.5s ease;
+  object-position: 70% 70%;
+}
+
+.nomineeMediaTextWrap {
+  text-transform: uppercase;
+  margin-top: 1.5rem;
+}
+.nomineeMediaTextWrap h1 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media screen and (min-width: 520px) {
+  .nomineeMediaTextWrap h1 {
+    font-size: 1.4rem;
+  }
+}
+.nomineeMediaTextWrap p {
+  color: #858585;
+  font-weight: bold;
+  margin: 0;
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+}
+
+.nominateButton,
+.removeButton {
+  margin-top: 2rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  background: transparent;
+  border-radius: 0.25rem;
+  color: white;
+  padding: 2rem;
+  border: 1px solid white;
+}
+.nominateButton:hover,
+.removeButton:hover {
+  border: 0.1rem solid #3718cb;
+  transition: all 0.2s ease-in;
+  background: #3718cb;
+}
+
+@keyframes floatingIronMan {
+  from {
+    transform: translate3d(0px, 5%, 0px);
+  }
+  to {
+    transform: translate3d(0px, 0px, 0px);
+  }
+}
+.introBanner {
+  position: relative;
+}
+@media screen and (min-width: 768px) {
+  .introBanner {
+    min-height: 10rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .introBanner {
+    min-height: 10rem;
+  }
+}
+.introBanner .introBannerImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.introBanner .ironManImage {
+  width: 12rem;
+  height: 12rem;
+  position: absolute;
+  right: -2%;
+  bottom: -30%;
+  animation: floatingIronMan 2s infinite alternate;
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .introBanner .ironManImage {
+    width: 25rem;
+    height: 25rem;
+    display: block;
+  }
+}
+@media screen and (min-width: 992px) {
+  .introBanner .ironManImage {
+    width: 35rem;
+    height: 35rem;
+    bottom: -7rem;
+  }
+}
+.introBanner .modalFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #02021e;
+  opacity: 0.4;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.introBannerTextWrap {
+  padding: 3rem 0;
+  width: 100%;
+}
+@media screen and (min-width: 520px) {
+  .introBannerTextWrap {
+    width: 75%;
+  }
+}
+.introBannerTextWrap .introBannerTitle {
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  font-size: 3rem;
+}
+@media screen and (min-width: 520px) {
+  .introBannerTextWrap .introBannerTitle {
+    font-size: 4rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .introBannerTextWrap .introBannerTitle {
+    font-size: 6rem;
+  }
+}
+.introBannerTextWrap .introBannerTitleDesc {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+}
+@media screen and (min-width: 768px) {
+  .introBannerTextWrap .introBannerTitleDesc {
+    font-size: 2rem;
+  }
+}
+
+.searchBarForm {
+  background: #3718cb;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 0px rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.75rem;
+  padding-left: 1.5rem;
+  margin-top: 1rem;
+  margin-right: auto;
+  position: relative;
+}
+.searchBarForm ::placeholder {
+  color: white;
+  text-transform: uppercase;
+}
+@media screen and (min-width: 992px) {
+  .searchBarForm {
+    width: 50%;
+    padding: 1.2rem;
+    padding-left: 1.5rem;
+  }
+}
+.searchBarForm input[type=search] {
+  font-size: 1.2rem;
+}
+@media screen and (min-width: 520px) {
+  .searchBarForm input[type=search] {
+    font-size: 2rem;
+  }
+}
+
+.searchBarIcons {
+  color: white;
+  font-size: 1.3rem;
+  margin-right: 0.3rem;
+}
+@media screen and (min-width: 520px) {
+  .searchBarIcons {
+    font-size: 1.7rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .searchBarIcons {
+    font-size: 2.7rem;
+    margin-right: 0.8rem;
+  }
+}
+
+.searchBarInput {
+  font-size: 1.2rem;
+  background: transparent;
+  color: white;
+  border: none;
+  outline: none;
+  margin: none;
+  width: 100%;
+  font-size: 1rem;
+}
+.searchBarInput:focus {
+  box-shadow: none;
+}
+@media screen and (min-width: 768px) {
+  .searchBarInput {
+    font-size: 1.3rem;
+  }
+}
+
+[type=search]::-webkit-search-cancel-button,
+[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.matchContainer {
+  opacity: 1;
+  width: 28rem;
+  position: absolute;
+  top: 3rem;
+  left: 0.2rem;
+  z-index: 3;
+  transition: opacity 0.2s ease-in;
+  box-shadow: 0 0 12px #000000;
+}
+@media screen and (min-width: 520px) {
+  .matchContainer {
+    width: 34rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .matchContainer {
+    width: 50rem;
+  }
+}
+
+.matchRow {
+  padding: 0.5rem;
+  display: flex;
+  cursor: pointer;
+  border-bottom: 1px solid black;
+  background: linear-gradient(to bottom, #e3eaef 5%, #c7d5e0 95%);
+}
+.matchRow:hover {
+  background: #212d3d;
+}
+.matchRow:hover .matchTextWrap {
+  color: white;
+}
+.matchRow .matchRowImage {
+  opacity: 0;
+  width: 12rem;
+  height: 4.5rem;
+}
+@media screen and (min-width: 768px) {
+  .matchRow .matchRowImage {
+    width: 12rem;
+    height: 4.5rem;
+  }
+}
+
+.hideMatchContainer {
+  opacity: 0;
+}
+
+.matchTextWrap {
+  margin-left: 1rem;
+  color: black;
+  overflow: hidden;
+}
+.matchTextWrap .matchTitle {
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.matchTextWrap .matchPrice {
+  margin: 0;
+  margin-top: 0.25rem;
+}
+@media screen and (min-width: 768px) {
+  .matchTextWrap .matchPrice {
+    margin-top: 0.5rem;
+  }
+}
+
+.nominateButtonDisabled {
+  cursor: default;
+  background: red;
+  border: 1px solid red;
+}
+.nominateButtonDisabled:hover {
+  background: red;
+  border: 1px solid red;
+}
+
+.searchForTitle {
+  font-size: 1.3rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+@media screen and (min-width: 768px) {
+  .searchForTitle {
+    font-size: 2rem;
+  }
+}
+
+.sliderAndDotWrap {
+  position: relative;
+}
+
+.dotWrap {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  justify-content: center;
+  width: 100%;
+  background-color: #0b0d12;
+}
+.dotWrap button {
+  position: relative;
+  transition: background-color 0.2s;
+  background: rgba(255, 255, 255, 0.5);
+  outline: none !important;
+  box-shadow: none !important;
+  border: none;
+  margin: 0;
+  margin-right: 0.3rem;
+  width: 10rem;
+  padding: 0.4rem;
+}
+.dotWrap .carousel__dot--selected {
+  background: #0086ca !important;
+}
+
+.dotInnerWrap {
+  padding-bottom: 0.5rem;
+}
+
+.homeCarouselContainer {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.homeCarouselContainer .pictureImageWrap {
+  position: relative;
+  width: 105%;
+  left: -2%;
+  height: 100%;
+}
+.homeCarouselContainer .pictureImageWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0%;
+}
+@media screen and (min-width: 768px) {
+  .homeCarouselContainer .pictureImageWrap img {
+    object-position: 60% 50%;
+  }
+}
+
+.backgroundContainer {
+  position: relative;
+  background: black;
+  height: 100%;
+  text-align: center;
+}
+
+.dotFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #00aeff;
+}
+
+.dotFillHide {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.slideImageLogoAndDescWrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (min-width: 768px) {
+  .slideImageLogoAndDescWrap {
+    padding-top: 5rem;
+    padding-left: 5rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+}
+
+.slideImageLogo {
+  width: 18rem;
+}
+@media screen and (min-width: 520px) {
+  .slideImageLogo {
+    width: 26rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .slideImageLogo {
+    width: 36rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .slideImageLogo {
+    width: 56rem;
+  }
+}
+
+.slideDesc {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin: 0;
+  margin-top: 1.5rem;
+  text-shadow: 4px 7px 17px rgba(0, 0, 0, 0.8);
+}
+@media screen and (min-width: 520px) {
+  .slideDesc {
+    font-size: 4rem;
+    margin-top: 2rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .slideDesc {
+    font-size: 4rem;
+    margin-top: 3rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .slideDesc {
+    font-size: 6.8rem;
+    width: 50rem;
+  }
+}
+
+.slideBackground {
+  width: 100%;
+  height: 100%;
+  background: red;
+  background-size: cover;
+}
+
+.maxNomineesBanner {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  background: red;
+  padding: 3rem;
+  margin: 1rem 0;
+  border-radius: 0.25rem;
+}
+
+.maxNomineesTitle {
+  text-align: center;
+  color: red;
+  font-size: 2rem;
+  -webkit-text-stroke-width: 1px;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  -webkit-text-stroke-color: white;
+  margin: 0;
+}
+@media screen and (min-width: 768px) {
+  .maxNomineesTitle {
+    font-size: 3rem;
+    -webkit-text-stroke-width: 2px;
+  }
+}
+
+.maxNomineesDesc {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  margin: 0;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .maxNomineesDesc {
+    font-size: 3rem;
+  }
+}
+
+.bannerBorder {
+  position: absolute;
+  top: 5%;
+  left: 1%;
+  z-index: 2;
+  width: 98%;
+  height: 100%;
+}
+.bannerBorder span {
+  position: absolute;
+  background: white;
+}
+.bannerBorder .top,
+.bannerBorder .bottom {
+  width: 100%;
+  height: 0.2rem;
+}
+.bannerBorder .left,
+.bannerBorder .right {
+  width: 0.2rem;
+  height: 100%;
+}
+.bannerBorder .bottom {
+  bottom: 0;
+  transform: scale(1);
+  transform-origin: top right;
+}
+.bannerBorder .left {
+  transform: scale(1);
+  transform-origin: bottom left;
+}
+.bannerBorder .right {
+  right: 0;
+}
+
+.loadingCenter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.modalBox {
+  position: relative;
+  cursor: initial;
+  background-color: #02021e;
+  width: 70%;
+  overflow: hidden;
+  border-radius: 0.8rem 0.8rem;
+}
+.modalBox h2 {
+  display: none;
+}
+.modalBox .modalCloseIcon {
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
+  font-size: 1.2rem;
+}
+@media screen and (min-width: 520px) {
+  .modalBox .modalCloseIcon {
+    font-size: 1.4rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .modalBox .modalCloseIcon {
+    font-size: 1.6rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .modalBox .modalCloseIcon {
+    font-size: 2rem;
+  }
+}
+
+.centerLoadingForModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalBannerImageWrap {
+  min-width: 30rem;
+}
+.modalBannerImageWrap img {
+  width: 100%;
+  max-height: 25rem;
+  object-fit: cover;
+}
+@media screen and (min-width: 520px) {
+  .modalBannerImageWrap img {
+    max-height: 23rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .modalBannerImageWrap img {
+    max-height: none;
+    height: 100%;
+  }
+}
+
+.modalBannerTitleImageAndInfoWrap {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 2rem;
+  max-width: 34%;
+}
+.modalBannerTitleImageAndInfoWrap p {
+  font-size: 0.7rem;
+}
+@media screen and (min-width: 420px) {
+  .modalBannerTitleImageAndInfoWrap p {
+    font-size: 0.9rem;
+  }
+}
+@media screen and (min-width: 520px) {
+  .modalBannerTitleImageAndInfoWrap p {
+    font-size: 1rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .modalBannerTitleImageAndInfoWrap p {
+    font-size: 1.4rem;
+  }
+}
+.modalBannerTitleImageAndInfoWrap img {
+  max-width: 100%;
+}
+@media screen and (min-width: 520px) {
+  .modalBannerTitleImageAndInfoWrap {
+    left: 3rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .modalBannerTitleImageAndInfoWrap {
+    left: 5rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .modalBannerTitleImageAndInfoWrap {
+    max-width: 30%;
+  }
+}
+
+.modalBannerContainer {
+  position: relative;
+}
+
+.modalFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.modalWatchButton {
+  padding: 1rem;
+  color: black;
+  border-radius: 0.4rem;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 0.5rem;
+  font-family: "Netflix Sans Bold";
+  font-weight: bold;
+  font-size: 0.7rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+@media screen and (min-width: 420px) {
+  .modalWatchButton {
+    font-size: 0.9rem;
+  }
+}
+@media screen and (min-width: 520px) {
+  .modalWatchButton {
+    font-size: 1rem;
+    padding: 1rem 2rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .modalWatchButton {
+    font-size: 1.4rem;
+    padding: 1rem 4rem;
+  }
+}
+.modalWatchButton:hover {
+  background-color: rgba(255, 255, 255, 0.75);
+  transition: all 0.3s ease;
+}
+@media screen and (min-width: 520px) {
+  .modalWatchButton {
+    margin-top: 2rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .modalWatchButton {
+    margin-top: 4rem;
+  }
+}
+
+.modalInfoWrap {
+  display: flex;
+  padding: 1rem;
+}
+@media screen and (min-width: 520px) {
+  .modalInfoWrap {
+    padding: 2rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .modalInfoWrap {
+    padding: 3rem;
+  }
+}
+
+.modalTextSection {
+  font-size: 0.8rem;
+  overflow: hidden;
+}
+@media screen and (min-width: 520px) {
+  .modalTextSection {
+    font-size: 1.2rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .modalTextSection {
+    font-size: 1.4rem;
+    margin-right: 4rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .modalTextSection {
+    font-size: 1.6rem;
+  }
+}
+
+.modalTextDateAndDescSection {
+  width: 100%;
+}
+@media screen and (min-width: 520px) {
+  .modalTextDateAndDescSection {
+    margin-right: 2rem;
+  }
+}
+
+.modalTextCastAndGenreSection {
+  width: 30%;
+}
+
+.modalMediaType {
+  text-transform: uppercase;
+}
+
+.modalMediaTitle {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.modalMediaDescOther {
+  font-weight: bold;
+  font-family: "Gramatika Bold";
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.modalMediaPlot {
+  font-weight: bold;
+  font-family: "Gramatika Bold";
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.modalMediaCastWrap,
+.modalMediaGenreWrap {
+  display: flex;
+}
+
+.modalGreyTextInfo {
+  color: #777;
+  margin-right: 0.25rem;
+}
+
+.modalContentContainer {
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (min-width: 768px) {
+  .modalContentContainer {
+    flex-direction: row;
+  }
+}
+
+nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  height: 6.5rem;
+  background: transparent;
+  padding: 1.5rem 4rem;
+  background: black;
+}
+@media screen and (min-width: 520px) {
+  nav {
+    padding: 1.5rem 4.5rem;
+  }
+}
+
+.headerTextsWrap {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  margin-left: 3rem;
+}
+.headerTextsWrap h1 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 0.1rem;
+  margin-right: 5rem;
+}
+
+.logo {
+  height: 100%;
+  object-fit: contain;
 }
 
 /*# sourceMappingURL=main.css.map */
