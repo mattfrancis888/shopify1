@@ -1077,7 +1077,7 @@ body {
 .modalBox {
   position: relative;
   cursor: initial;
-  background-color: #181818;
+  background-color: #02021e;
   width: 70%;
   overflow: hidden;
   border-radius: 0.8rem 0.8rem;
@@ -1116,16 +1116,18 @@ body {
 }
 
 .modalBannerImageWrap {
-  width: 100%;
+  min-width: 30rem;
+  min-height: 30rem;
 }
 .modalBannerImageWrap img {
   width: 100%;
   max-height: 32rem;
   object-fit: cover;
 }
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 768px) {
   .modalBannerImageWrap img {
-    max-height: 40rem;
+    max-height: none;
+    height: 100%;
   }
 }
 
@@ -1272,7 +1274,7 @@ body {
 }
 
 .modalTextDateAndDescSection {
-  width: 70%;
+  width: 100%;
 }
 @media screen and (min-width: 520px) {
   .modalTextDateAndDescSection {
@@ -1284,12 +1286,9 @@ body {
   width: 30%;
 }
 
-.modalMediaDate {
-  font-weight: bold;
-}
-
 .modalMediaDesc {
   font-weight: bold;
+  font-family: "Gramatika Bold";
 }
 
 .modalMediaCastWrap,
@@ -1300,6 +1299,16 @@ body {
 .modalGreyTextInfo {
   color: #777;
   margin-right: 0.25rem;
+}
+
+.modalContentContainer {
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (min-width: 768px) {
+  .modalContentContainer {
+    flex-direction: row;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -127,11 +127,13 @@ const Media: React.FC<MediaProps> = (props) => {
                 </div>
                 <div className="modalInfoWrap">
                     <div className="modalTextSection modalTextDateAndDescSection">
-                        <p className="modalMediaDate">{mockStore.Year}</p>
+                        <h1>{mockStore.Title}</h1>
+                        <p className="modalMediaDesc">{mockStore.Year}</p>
+                        <p className="modalMediaDesc">{mockStore.Genre}</p>
                         <p className="modalMediaDesc">{mockStore.Plot}</p>
-                    </div>
-                    <div className="modalTextSection modalTextCastAndGenreSection">
-                        <div className="modalCastAndGenre"></div>
+                        <p className="modalMediaDesc">
+                            {`Cast: ${mockStore.Actors}`}
+                        </p>
                     </div>
                 </div>
             </div>
