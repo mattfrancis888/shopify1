@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { ModalProps } from "./Nominees";
+import { ModalProps } from "./Media";
 import { AiOutlineClose } from "react-icons/ai";
 import { useTransition, animated, useSpring } from "react-spring";
 //We use portals + modals instead of directly creating a component and use it
