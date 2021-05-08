@@ -17,6 +17,7 @@
 }
 
 .nomineeMediaContainer {
+    min-height: 10rem;
     position: relative;
     margin-top: 2.5rem;
     margin-bottom: 10rem;
@@ -155,7 +156,6 @@
 
 .introBanner {
     position: relative;
-
     @media screen and (min-width: $md_breakpoint) {
         min-height: 10rem;
     }

@@ -8,11 +8,9 @@ import NoImageFound from "../img/NoImageFound.jpg";
 import { useTransition, animated, useSpring, useTrail } from "react-spring";
 import Loading from "./Loading";
 import { MAX_NOMINEE } from "./Nominees";
-const MANY_ERROR = "Too many results.";
+const MANY_ERROR = "Too many results";
 const MOVIE_NOT_FOUND = "Movie not found!";
-export const INTERNET_ERROR = "Check your internet connection and try again.";
-//TODO:
-//2. Network error
+export const INTERNET_ERROR = "Check your internet connection and try again";
 
 interface SearchbarProps {
     addItem(item: MediaType): void;
@@ -25,7 +23,7 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
     // https://stackoverflow.com/questions/32553158/detect-click-outside-react-component
 
     const searchBarInputRef = useRef<HTMLInputElement>(null);
-    const [searchTerm, setSearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState("avengers");
     const [data, dataSet] = useState<any>(null);
 
     const [showLoading, setShowLoading] = useState(false);
@@ -219,13 +217,7 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                     autoComplete="off"
                     ref={searchBarInputRef}
                 />
-                <AiOutlineSearch
-                    className="searchBarIcons"
-                    data-testid="searchIcon"
-                    onClick={() => {
-                        history.push(`/search?q=${searchTerm}`);
-                    }}
-                />
+                <AiOutlineSearch className="searchBarIcons" />
             </form>
             <div className="nomineeMediaContainer">{renderSearchPreview()}</div>
         </React.Fragment>

@@ -14,24 +14,24 @@ export interface ModalProps {
     fade?: any;
 }
 
-export const mockObj = {
-    Title: "The Avengers",
-    Year: "2012",
-    Rated: "PG-13",
-    Released: "04 May 2012",
-    Runtime: "143 min",
-    Genre: "Action, Adventure, Sci-Fi",
-    Director: "Joss Whedon",
-    Writer: "Joss Whedon (screenplay), Zak Penn (story), Joss Whedon (story)",
-    Actors: "Robert Downey Jr., Chris Evans, Mark Ruffalo, Chris Hemsworth",
-    Plot:
-        "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.",
-    Language: "English, Russian, Hindi",
-    Country: "USA",
-    Awards: "Nominated for 1 Oscar. Another 38 wins & 79 nominations.",
-    Poster:
-        "https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
-};
+// export const mockObj = {
+//     Title: "The Avengers",
+//     Year: "2012",
+//     Rated: "PG-13",
+//     Released: "04 May 2012",
+//     Runtime: "143 min",
+//     Genre: "Action, Adventure, Sci-Fi",
+//     Director: "Joss Whedon",
+//     Writer: "Joss Whedon (screenplay), Zak Penn (story), Joss Whedon (story)",
+//     Actors: "Robert Downey Jr., Chris Evans, Mark Ruffalo, Chris Hemsworth",
+//     Plot:
+//         "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.",
+//     Language: "English, Russian, Hindi",
+//     Country: "USA",
+//     Awards: "Nominated for 1 Oscar. Another 38 wins & 79 nominations.",
+//     Poster:
+//         "https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
+// };
 
 interface MediaProps {
     media: any;
@@ -42,9 +42,7 @@ const Media: React.FC<MediaProps> = (props) => {
     let { media } = props;
     const [showModal, setShowModal] = useState(false);
     const [firstRender, setFirstRender] = useState(true);
-    const [mockStore, setMockStore] = useState<any>(mockObj);
-
-    const [showModalContent, setShowModalContent] = useState<any>(null);
+    const [modalData, setModalData] = useState<any>({});
 
     const transition = useTransition(showModal, {
         from: {
@@ -75,24 +73,24 @@ const Media: React.FC<MediaProps> = (props) => {
 
     const modalShow = (clickedMedia: any) => {
         setFirstRender(false);
-        setShowModal(true);
-        setShowModalContent({ ...clickedMedia });
-        // const LINK = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=${clickedMedia.imdbID}`;
-        // axios
-        //     .get(LINK)
-        //     .then((response) => {
-        //         // handle success
-        //         //  setShowLoading(false);
-        //         console.log(response.data);
-        //         setMockStore(response.data);
-        //     })
-        //     .catch(function (error) {
-        //         // handle error
-        //         // dataSet(INTERNET_ERROR);
-        //         console.log("API ERROR:", error);
 
-        //         //setShowLoading(false);
-        //     });
+        const LINK = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=${clickedMedia.imdbID}`;
+        axios
+            .get(LINK)
+            .then((response) => {
+                // handle success
+                //  setShowLoading(false);
+
+                setModalData(response.data);
+                setShowModal(true);
+            })
+            .catch(function (error) {
+                // handle error
+                // dataSet(INTERNET_ERROR);
+                console.log("API ERROR:", error);
+                alert("Check your internet connection and try again");
+                //setShowLoading(false);
+            });
     };
     const modalOnCancel = () => {
         setShowModal(false);
@@ -123,19 +121,20 @@ const Media: React.FC<MediaProps> = (props) => {
             <div className="modalContentContainer" onLoad={() => {}}>
                 <div className="modalBannerContainer">
                     <div className="modalBannerImageWrap">
-                        <img src={mockStore.Poster} alt=""></img>
+                        <img src={modalData.Poster} alt=""></img>
 
                         <div className="modalFade"></div>
                     </div>
                 </div>
                 <div className="modalInfoWrap">
                     <div className="modalTextSection modalTextDateAndDescSection">
-                        <h1>{mockStore.Title}</h1>
-                        <p className="modalMediaDesc">{mockStore.Year}</p>
-                        <p className="modalMediaDesc">{mockStore.Genre}</p>
-                        <p className="modalMediaDesc">{mockStore.Plot}</p>
-                        <p className="modalMediaDesc">
-                            {`Cast: ${mockStore.Actors}`}
+                        <h1 className="modalMediaTitle">{modalData.Title}</h1>
+                        <h3 className="modalMediaType">{modalData.Type}</h3>
+                        <p className="modalMediaDescOther">{`Released: ${modalData.Year}`}</p>
+                        <p className="modalMediaDescOther">{`Genre: ${modalData.Genre}`}</p>
+                        <p className="modalMediaPlot">{modalData.Plot}</p>
+                        <p className="modalMediaDescOther">
+                            {`Cast: ${modalData.Actors}`}
                         </p>
                     </div>
                 </div>

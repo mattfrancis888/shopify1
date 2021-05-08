@@ -413,6 +413,7 @@ body {
 }
 
 .nomineeMediaContainer {
+  min-height: 10rem;
   position: relative;
   margin-top: 2.5rem;
   margin-bottom: 10rem;
@@ -691,7 +692,6 @@ body {
 .searchBarIcons {
   color: white;
   font-size: 1.3rem;
-  cursor: pointer;
   margin-right: 0.3rem;
 }
 @media screen and (min-width: 520px) {
@@ -994,6 +994,7 @@ body {
 }
 
 .maxNomineesTitle {
+  text-align: center;
   color: red;
   font-size: 2rem;
   -webkit-text-stroke-width: 1px;
@@ -1014,6 +1015,7 @@ body {
   text-transform: uppercase;
   margin: 0;
   margin-top: 0.5rem;
+  text-align: center;
 }
 @media screen and (min-width: 768px) {
   .maxNomineesDesc {
@@ -1127,7 +1129,7 @@ body {
 }
 @media screen and (min-width: 520px) {
   .modalBannerImageWrap img {
-    max-height: 32rem;
+    max-height: 23rem;
   }
 }
 @media screen and (min-width: 768px) {
@@ -1292,7 +1294,27 @@ body {
   width: 30%;
 }
 
-.modalMediaDesc {
+.modalMediaType {
+  text-transform: uppercase;
+}
+
+.modalMediaTitle {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.modalMediaDescOther {
+  font-weight: bold;
+  font-family: "Gramatika Bold";
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.modalMediaPlot {
   font-weight: bold;
   font-family: "Gramatika Bold";
   display: -webkit-box;

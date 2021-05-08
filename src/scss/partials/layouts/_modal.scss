@@ -58,7 +58,7 @@
         max-height: 25rem;
         object-fit: cover;
         @media screen and (min-width: $sm_breakpoint) {
-            max-height: 32rem;
+            max-height: 23rem;
         }
         @media screen and (min-width: $md_breakpoint) {
             max-height: none;
@@ -190,7 +190,24 @@
     width: 30%;
 }
 
-.modalMediaDesc {
+.modalMediaType {
+    text-transform: uppercase;
+}
+.modalMediaTitle {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.modalMediaDescOther {
+    font-weight: bold;
+    font-family: "Gramatika Bold";
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.modalMediaPlot {
     font-weight: bold;
     font-family: "Gramatika Bold";
     display: -webkit-box;

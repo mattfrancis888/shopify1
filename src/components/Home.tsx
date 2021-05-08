@@ -90,7 +90,7 @@ const Home: React.FC<{}> = () => {
                 <div className="introBanner">
                     <animated.div
                         className="introBannerTextWrap"
-                        style={translateTitle}
+                        // style={translateTitle}
                     >
                         <h1 className="introBannerTitle">2021 Nominees</h1>
                         <p className="introBannerTitleDesc">

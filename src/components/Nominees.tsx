@@ -164,7 +164,12 @@ const Nominee: React.FC<NomineeProps> = (props) => {
                 );
             else {
                 return (
-                    <h1 className="noResultText">You Have No Nominations</h1>
+                    <animated.h1
+                        style={translateTitle}
+                        className="noResultText"
+                    >
+                        You Have No Nominations
+                    </animated.h1>
                 );
             }
         }
