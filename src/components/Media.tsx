@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import NoImageFound from "../img/NoImageFound.jpg";
+
 import Modal from "./Modal";
+import { Media as MediaType } from "./Home";
 import { useTransition, animated, useSpring, useTrail } from "react-spring";
 import axios from "axios";
+import { MAX_NOMINEE } from "./Nominees";
 export interface ModalProps {
     onDismiss(): void;
     title?: string;
@@ -33,7 +35,8 @@ export const mockObj = {
 
 interface MediaProps {
     media: any;
-    removeItem(imdbID: String): void;
+
+    children: any;
 }
 const Media: React.FC<MediaProps> = (props) => {
     let { media } = props;
@@ -143,28 +146,13 @@ const Media: React.FC<MediaProps> = (props) => {
     return (
         <React.Fragment>
             {renderModal()}
-            <div className="nomineeMedia">
-                <img
-                    src={media.Poster !== "N/A" ? media.Poster : NoImageFound}
-                    onError={(e: any) => {
-                        e.target.src = NoImageFound; // some replacement image
-                        // e.target.style = 'padding: 8px; margin: 16px' // inline styles in html format
-                    }}
-                    onClick={() => {
-                        modalShow(media);
-                    }}
-                    alt="poster"
-                />
-                <div className="nomineeMediaTextWrap">
-                    <h1>{media.Title}</h1>
-                    <p>{media.Year}</p>
-                </div>
-                <button
-                    className="removeButton"
-                    onClick={() => props.removeItem(media.imdbID)}
-                >
-                    Remove
-                </button>
+            <div
+                className="nomineeMedia"
+                onClick={() => {
+                    modalShow(media);
+                }}
+            >
+                {props.children}
             </div>
         </React.Fragment>
     );

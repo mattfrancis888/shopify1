@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useTransition, animated, useSpring, useTrail } from "react-spring";
 import useOnScreen from "../useOnScreen";
 import Media from "./Media";
+import NoImageFound from "../img/NoImageFound.jpg";
 // import { Media } from "./Home";
 
 export const MAX_NOMINEE = 5;
@@ -118,15 +119,33 @@ const Nominee: React.FC<NomineeProps> = (props) => {
                         {trail.map((animation, index: number) => {
                             let media = medias[index];
                             return (
-                                <animated.div
-                                    style={animation}
-                                    key={index}
-                                    className="nomineeMedia"
-                                >
-                                    <Media
-                                        media={media}
-                                        removeItem={props.removeItem}
-                                    />
+                                <animated.div style={animation} key={index}>
+                                    <Media media={media}>
+                                        <img
+                                            src={
+                                                media.Poster !== "N/A"
+                                                    ? media.Poster
+                                                    : NoImageFound
+                                            }
+                                            onError={(e: any) => {
+                                                e.target.src = NoImageFound; // some replacement image
+                                                // e.target.style = 'padding: 8px; margin: 16px' // inline styles in html format
+                                            }}
+                                            alt="poster"
+                                        />
+                                        <div className="nomineeMediaTextWrap">
+                                            <h1>{media.Title}</h1>
+                                            <p>{media.Year}</p>
+                                        </div>
+                                        <button
+                                            className="removeButton"
+                                            onClick={() =>
+                                                props.removeItem(media.imdbID)
+                                            }
+                                        >
+                                            Remove
+                                        </button>
+                                    </Media>
                                 </animated.div>
                             );
                         })}

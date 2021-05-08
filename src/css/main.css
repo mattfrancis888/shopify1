@@ -1117,12 +1117,16 @@ body {
 
 .modalBannerImageWrap {
   min-width: 30rem;
-  min-height: 30rem;
 }
 .modalBannerImageWrap img {
   width: 100%;
-  max-height: 32rem;
+  max-height: 25rem;
   object-fit: cover;
+}
+@media screen and (min-width: 520px) {
+  .modalBannerImageWrap img {
+    max-height: 32rem;
+  }
 }
 @media screen and (min-width: 768px) {
   .modalBannerImageWrap img {
@@ -1289,6 +1293,10 @@ body {
 .modalMediaDesc {
   font-weight: bold;
   font-family: "Gramatika Bold";
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .modalMediaCastWrap,

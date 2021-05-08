@@ -2,7 +2,8 @@ import React, { useRef, useEffect, useState } from "react";
 import history from "../browserHistory";
 import { AiOutlineSearch } from "react-icons/ai";
 import axios from "axios";
-import { Media } from "./Home";
+import Media from "./Media";
+import { Media as MediaType } from "./Home";
 import NoImageFound from "../img/NoImageFound.jpg";
 import { useTransition, animated, useSpring, useTrail } from "react-spring";
 import Loading from "./Loading";
@@ -14,7 +15,7 @@ export const INTERNET_ERROR = "Check your internet connection and try again.";
 //2. Network error
 
 interface SearchbarProps {
-    addItem(item: Media): void;
+    addItem(item: MediaType): void;
     medias: any;
 }
 
@@ -111,7 +112,7 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                 return trail.map((animation, index: number) => {
                     let mediaFromSearch = data[index];
                     let mediasInLocalStorage = medias.find(
-                        (o: Media) => o.imdbID === mediaFromSearch.imdbID
+                        (o: MediaType) => o.imdbID === mediaFromSearch.imdbID
                     );
                     return (
                         <animated.div
@@ -119,56 +120,58 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
                             key={index}
                             className="nomineeMedia"
                         >
-                            <img
-                                src={
-                                    mediaFromSearch.Poster !== "N/A"
-                                        ? mediaFromSearch.Poster
-                                        : NoImageFound
-                                }
-                                className={
-                                    mediasInLocalStorage != null
-                                        ? "showNomineePosterBorder"
-                                        : "hideNominePosterBorder"
-                                }
-                                alt="poster"
-                            />
-                            <div
-                                className={
-                                    mediasInLocalStorage != null
-                                        ? "nomineeMediaSelected"
-                                        : "nomineeMediaUnselected"
-                                }
-                            >
-                                <h1>Nominated</h1>
-                            </div>
-                            <div className="nomineeMediaTextWrap">
-                                <h1>{mediaFromSearch.Title}</h1>
-                                <p>{mediaFromSearch.Year}</p>
-                            </div>
-                            <button
-                                className={`nominateButton ${
-                                    mediasInLocalStorage != null ||
-                                    medias.length === MAX_NOMINEE
-                                        ? "nominateButtonDisabled"
-                                        : ""
-                                }
+                            <Media media={mediaFromSearch}>
+                                <img
+                                    src={
+                                        mediaFromSearch.Poster !== "N/A"
+                                            ? mediaFromSearch.Poster
+                                            : NoImageFound
+                                    }
+                                    className={
+                                        mediasInLocalStorage != null
+                                            ? "showNomineePosterBorder"
+                                            : "hideNominePosterBorder"
+                                    }
+                                    alt="poster"
+                                />
+                                <div
+                                    className={
+                                        mediasInLocalStorage != null
+                                            ? "nomineeMediaSelected"
+                                            : "nomineeMediaUnselected"
+                                    }
+                                >
+                                    <h1>Nominated</h1>
+                                </div>
+                                <div className="nomineeMediaTextWrap">
+                                    <h1>{mediaFromSearch.Title}</h1>
+                                    <p>{mediaFromSearch.Year}</p>
+                                </div>
+                                <button
+                                    className={`nominateButton ${
+                                        mediasInLocalStorage != null ||
+                                        medias.length === MAX_NOMINEE
+                                            ? "nominateButtonDisabled"
+                                            : ""
+                                    }
                                 `}
-                                onClick={() => {
-                                    addItem(mediaFromSearch);
-                                }}
-                                disabled={
-                                    mediasInLocalStorage != null ||
-                                    medias.length === MAX_NOMINEE
-                                        ? true
-                                        : false
-                                }
-                            >
-                                {mediasInLocalStorage != null
-                                    ? "Nominated"
-                                    : medias.length === MAX_NOMINEE
-                                    ? "No Spots"
-                                    : "Nominate"}
-                            </button>
+                                    onClick={() => {
+                                        addItem(mediaFromSearch);
+                                    }}
+                                    disabled={
+                                        mediasInLocalStorage != null ||
+                                        medias.length === MAX_NOMINEE
+                                            ? true
+                                            : false
+                                    }
+                                >
+                                    {mediasInLocalStorage != null
+                                        ? "Nominated"
+                                        : medias.length === MAX_NOMINEE
+                                        ? "No Spots"
+                                        : "Nominate"}
+                                </button>
+                            </Media>
                         </animated.div>
                     );
                 });
