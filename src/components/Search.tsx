@@ -30,7 +30,7 @@ const Searchbar: React.FC<SearchbarProps> = (props) => {
 
     useEffect(() => {
         async function fetchMyAPI() {
-            const LINK = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${searchTerm}`;
+            const LINK = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${searchTerm}`;
             axios
                 .get(LINK)
                 .then((response) => {

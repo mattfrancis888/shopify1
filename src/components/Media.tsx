@@ -84,7 +84,7 @@ const Media: React.FC<MediaProps> = (props) => {
     const modalShow = (clickedMedia: any) => {
         setFirstRender(false);
 
-        const LINK = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=${clickedMedia.imdbID}`;
+        const LINK = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=${clickedMedia.imdbID}`;
         axios
             .get(LINK)
             .then((response) => {
