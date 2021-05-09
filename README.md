@@ -32,6 +32,7 @@ Remove a nominee from the nomination list
 ## What It Looks Like
 
 <img src="readmeImg/page.jpg"/>
+<img src="readmeImg/modal.jpg"/>
 
 # Getting Started
 
